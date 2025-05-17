@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Printing page</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+			integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="../styles/primary_colors.css" />
+	</head>
+	<body class="p2g-background text-light">
+		<nav class="navbar navbar-expand-lg p2g-navbar navbar-dark">
+			<div class="container">
+				<a class="navbar-brand" id="homepage" href="/pages/home_page.html">Print2Go</a>
+				<button
+					type="button"
+					class="navbar-toggler ms-auto"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link active" id="printpage" href="/pages/print_page.html" name="Printing Page">Printing Page</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" id="modelpage" href="/pages/model_page.html" name="Modeling Page">Modeling Page</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active d-none" id="goback" name="Go Back" onclick="window.history.back();">Go back</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" id="accountpage" href="/pages/profile_page.html" name="Account">Account</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container pt-5">
+			<div class="row">
+				<div class="col">
+					<div class="d-flex justify-content-end">
+						<div class="ratio ratio-1x1 w-75">
+							<div class="border border-1">
+								<div
+									id="fileTrigger"
+									class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-success bg-opacity-75 text-white text-center rounded visible"
+									name="File Input Trigger"
+								>
+									<div>
+										<p class="mb-3">Select a 3D model file (.stl)</p>
+										<label class="btn btn-light text-dark">
+											Choose File
+											<input type="file" class="form-control" id="stlFileInput" name="Select 3D file" accept=".stl" hidden value="ola" />
+										</label>
+									</div>
+								</div>
+
+								<div id="viewer-container" class="w-100 h-100 hidden" name="Viewer Container">
+									<canvas id="threeCanvas" class="w-100 h-100" name="ThreeJS Canvas"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="d-flex mb-2">
+						<button type="button" class="btn btn-danger me-3" id="remove3dfile">Remove 3d Model</button>
+						<button type="button" class="btn btn-success" id="replace3dfile">Replace 3d Model</button>
+						<input type="hidden" id="hiddenFileName" name="hiddenFileName" />
+					</div>
+
+					Print's name
+					<input type="text" class="form-control w-75 p2g-input" id="name" name="Print Name" placeholder="Name" />
+
+					Quantity
+					<input type="number" class="form-control w-25 p2g-input" id="quantity" name="Quantity" value="1" min="1" />
+
+					Material
+					<select class="form-select w-50 p2g-select p2g-select-arrow" id="material" name="Material">
+						<option value="pla" selected>PLA</option>
+						<option value="abs">ABS</option>
+						<option value="petg">PETG</option>
+					</select>
+
+					Color
+					<select class="form-select w-25 p2g-input" id="color" name="Color">
+						<option value="red" selected>Red</option>
+						<option value="green">Green</option>
+						<option value="blue">Blue</option>
+					</select>
+
+					<div class="form-check mt-2 ms-1">
+						<input type="checkbox" class="form-check-input p2g-checkbox" id="multicolor" name="Multicolor" />
+						<label class="form-check-label" for="multicolor"> Multicolor </label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container py-5 px-5">
+			<div class="row">
+				<div class="col-8">
+					<div class="p2g-front">
+						<!-- ?QUALITY -->
+						<div class="p-3 border-bottom border-secondary">
+							Nozzle diameter | Layer height
+							<select class="form-select w-50 p2g-select p2g-select-arrow" id="qualityPreset" name="Quality Preset" onchange="qualityPreset()">
+								<option value="" selected hidden>Chose a preset</option>
+								<option value="0.2">0.2 mm | 0.1 mm</option>
+								<option value="0.3">0.3 mm | 0.2 mm</option>
+								<option value="0.4" selected>0.4 mm | 0.2 mm</option>
+								<option value="0.5">0.5 mm | 0.25 mm</option>
+								<option value="0.6">0.6 mm | 0.3 mm</option>
+								<option value="0.8">0.8 mm | 0.4 mm</option>
+								<option value="custom" hidden>Custom</option>
+							</select>
+
+							<div class="ms-4 mt-2">
+								Nozzle Diameter
+								<select class="form-select w-25 p2g-select p2g-select-arrow" id="nozzleDiameter" name="Nozzle Diameter" onchange="qualityPresetSetCustom()">
+									<option value="" selected hidden>Select a nozzle size</option>
+									<option value="0.20">0.2 mm</option>
+									<option value="0.30">0.3 mm</option>
+									<option value="0.40" selected>0.4 mm</option>
+									<option value="0.50">0.5 mm</option>
+									<option value="0.60">0.6 mm</option>
+									<option value="0.80">0.8 mm</option>
+								</select>
+
+								Layer Height
+								<input
+									type="number"
+									class="form-control w-25 p2g-input"
+									id="layerHeight"
+									name="Layer Height"
+									value="0.2"
+									step="0.05"
+									min="0.1"
+									onchange="qualityPresetSetCustom()"
+								/>
+							</div>
+						</div>
+
+						<!-- ?DURABILITY -->
+						<div class="p-3 border-bottom border-secondary">
+							Durability
+							<select class="form-select w-50 p2g-select p2g-select-arrow" id="durabilityPreset" name="Durability Preset" onchange="durabilityPreset()">
+								<option value="" selected hidden>Select an option</option>
+								<option value="w">Weak</option>
+								<option value="a" selected>Average</option>
+								<option value="s">Strong</option>
+								<option value="custom" hidden>Custom</option>
+							</select>
+
+							<div class="ms-4 mt-2">
+								Infill %
+								<input
+									type="number"
+									class="form-control w-25 p2g-input"
+									id="infillPercent"
+									name="Infill Percentage"
+									value="20"
+									onchange="durabilityPresetSetCustom()"
+								/>
+
+								Type of infill
+								<select class="form-select w-25 p2g-select p2g-select-arrow" id="infillType" name="Infill Type" onchange="durabilityPresetSetCustom()">
+									<option value="lines">Lines</option>
+									<option value="triangular">Triangular</option>
+									<option value="grid">Grid</option>
+									<option value="cubic" selected>Cubic</option>
+									<option value="hexagonal">Hexagonal</option>
+									<option value="gyroid">Gyroid</option>
+									<option value="none" hidden>No infill</option>
+								</select>
+
+								Number of wall layers
+								<input
+									type="number"
+									class="form-control w-25 p2g-input"
+									id="wallLayers"
+									name="Wall Layers"
+									value="3"
+									min="0"
+									onchange="durabilityPresetSetCustom()"
+								/>
+
+								Number of top/bottom layers
+								<input
+									type="number"
+									class="form-control w-25 p2g-input"
+									id="topBottomLayers"
+									name="Top/Bottom Layers"
+									value="4"
+									min="0"
+									onchange="durabilityPresetSetCustom()"
+								/>
+							</div>
+						</div>
+
+						<!-- ?SUPPORT -->
+						<div class="p-3 border-bottom border-secondary">
+							<div class="form-check ms-1">
+								<input class="form-check-input p2g-checkbox" type="checkbox" id="useSupport" name="Use Support" value="" checked />
+								<label class="form-check-label" for="useSupport"> Allow support </label>
+							</div>
+
+							Type of support
+							<select class="form-select w-25 p2g-select p2g-select-arrow" id="supportType" name="Support Type">
+								<option value="normal" selected>Normal</option>
+								<option value="tree">Tree</option>
+								<option value="minimal">Minimal</option>
+							</select>
+
+							Support Density %
+							<input type="number" class="form-control w-25 p2g-input" id="supportDensity" name="Support Density" value="5" min="1" />
+
+							<div class="form-check mt-2 ms-1">
+								<input class="form-check-input p2g-checkbox" type="checkbox" id="smoothPrint" name="Smooth Print" value="" />
+								<label class="form-check-label" for="smoothPrint"> Smooth print </label>
+							</div>
+						</div>
+
+						<!-- ?SCALE -->
+						<div class="p-3 border-bottom border-secondary">
+							Scale of the 3D print
+							<input type="number" class="form-control w-25 p2g-input" id="scaleXYZ" name="Overall Scale" value="100" oninput="scaleValues()" />
+
+							<div class="form-check mt-2 ms-1">
+								<input class="form-check-input p2g-checkbox" type="checkbox" id="uniformScale" name="Uniform Scale" checked />
+								<label class="form-check-label" for="uniformScale"> Uniform scale </label>
+							</div>
+
+							<div class="ms-4 mt-3">
+								<div class="input-group w-25 mt-2">
+									<span class="input-group-text rounded-end-0 p2g-input fw-semibold">X</span>
+									<input type="text" class="form-control p2g-input" id="scaleX" name="Scale X" value="100" disabled />
+								</div>
+								<div class="input-group w-25 mt-2">
+									<span class="input-group-text rounded-end-0 p2g-input fw-semibold">Y</span>
+									<input type="text" class="form-control p2g-input" id="scaleY" name="Scale Y" value="100" disabled />
+								</div>
+								<div class="input-group w-25 mt-2">
+									<span class="input-group-text rounded-end-0 p2g-input fw-semibold">Z</span>
+									<input type="text" class="form-control p2g-input" id="scaleZ" name="Scale Z" value="100" disabled />
+								</div>
+							</div>
+						</div>
+
+						<!-- ?ADDITIONAL INFORMATION -->
+						<div class="p-3">
+							Additional information
+							<textarea class="form-control w-100 p2g-input" id="adicionalInfo" name="Additional Information" rows="4"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-4">
+					<div class="p2g-front p-3">
+						<div class="d-flex justify-content-between fs-4">
+							<div>Cost of print</div>
+							<div><span id="cost">--,--</span> €</div>
+						</div>
+						<div class="d-flex justify-content-between fs-4">
+							<div>Time to print</div>
+							<div><span id="time">--</span> hours</div>
+						</div>
+
+						<div class="form-check mt-2 ms-1">
+							<input class="form-check-input p2g-checkbox" type="checkbox" id="urgent" name="Urgent" value="" />
+							<label class="form-check-label" for="urgent"> Urgent (+ 20%)</label>
+						</div>
+
+						<div class="mt-4">
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam unde quas optio explicabo saepe fugit placeat obcaecati odio inventore atque.
+						</div>
+					</div>
+
+					<button type="button" id="submitPrint" name="Submit Print" class="btn btn-success w-100 mt-3" onclick="storePrintData()">Send 3D Print</button>
+					<button type="button" id="updatePrint" name="Update Print" class="btn btn-primary w-100 mt-3 d-none" onclick="updateData()">Save 3D Print</button>
+
+					<div class="mt-2">License</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+			crossorigin="anonymous"
+		></script>
+
+		<script src="../scripts/actions/print_events.js"></script>
+		<script src="../scripts/actions/all_filled.js"></script>
+		<script src="../scripts/actions/confirm_exit.js"></script>
+
+		<script src="../scripts/data/save_printModel_data.js"></script>
+		<script src="../scripts/data/load_printModel_data.js"></script>
+
+		<!-- Threejs -->
+		<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+		<script src="../scripts/threejs/render_3d.js" type="module"></script>
+
+		<!-- <script src="https://unpkg.com/three@0.154.0/examples/jsm/loaders/STLLoader.js"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/STLLoader.js"></script> -->
+	</body>
+</html>
