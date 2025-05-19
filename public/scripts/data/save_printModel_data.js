@@ -23,8 +23,8 @@ function getPrintData() {
 		scaleZ: document.getElementById("scaleZ").value,
 		adicionalInfo: document.getElementById("adicionalInfo").value,
 		urgent: document.getElementById("urgent").checked,
-		price: 99.99,
-		enddate: "2025-12-31",
+		price: parseFloat(document.getElementById("cost").textContent),
+		enddate: getDeliveryDate(parseInt(document.getElementById("time").textContent, 10)),
 	};
 }
 
@@ -50,8 +50,8 @@ function getModelData() {
 		addTolerance: document.getElementById("addTolerance").checked,
 		urgent: document.getElementById("urgent").checked,
 		fileNames: allFiles,
-		price: 99.99,
-		enddate: "2025-12-31",
+		price: document.getElementById("cost").textContent,
+		enddate: getDeliveryDate(+document.getElementById("time").textContent),
 	};
 }
 
@@ -70,8 +70,6 @@ function insertData() {
 		console.warn("No data found in sessionStorage.");
 		return;
 	}
-
-	console.log(data);
 
 	fetch("/insert", {
 		method: "POST",
@@ -129,4 +127,20 @@ async function updateData() {
 		console.error("Update failed:", err);
 		alert("Failed to update data.");
 	}
+}
+
+function getDeliveryDate(days) {
+	const today = new Date();
+	const deliveryDate = new Date();
+	deliveryDate.setDate(today.getDate() + days);
+
+	// Format as YYYY-MM-DD
+	const year = deliveryDate.getFullYear();
+	const month = String(deliveryDate.getMonth() + 1).padStart(2, "0"); // months are 0-based
+	const day = String(deliveryDate.getDate()).padStart(2, "0");
+
+	const formattedDate = `${year}-${month}-${day}`;
+
+	console.log("Estimated delivery date:", formattedDate);
+	return formattedDate;
 }

@@ -14,6 +14,9 @@ async function loadProfileInfo() {
 		// Fetch data to load or reload values
 		const data = await findByField("profiles", "email", session);
 
+		document.getElementById("profile-username").textContent = data.username || "Loading...";
+		document.getElementById("profile-id").textContent = data.userid || "Loading...";
+
 		// Refill profile fields
 		document.getElementById("username").value = data.username || "";
 		document.getElementById("email").value = data.email || "";
@@ -45,10 +48,6 @@ document.getElementById("save-adress").addEventListener("click", updateProfileDa
 
 async function updateProfileData() {
 	try {
-		const table = "profiles";
-		const field = "email";
-		const value = document.getElementById("email").value;
-
 		const updatedData = {
 			username: document.getElementById("username").value,
 			password: document.getElementById("password").value,
@@ -59,11 +58,15 @@ async function updateProfileData() {
 			postalCode: document.getElementById("postal_code").value,
 			receptorName: document.getElementById("receptor_name").value,
 		};
+		//todo maybe only update when user updates username
+		document.getElementById("profile-username").textContent = document.getElementById("username").value;
+
+		const value = document.getElementById("email").value;
 
 		const res = await fetch(`/update`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ table, column: field, value, new_value: updatedData })
+			body: JSON.stringify({ table: "profiles", column: "email", value, new_value: updatedData }),
 		});
 
 		if (!res.ok) throw new Error("Failed to update profile");

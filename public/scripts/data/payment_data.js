@@ -1,19 +1,15 @@
 function insert_update_payment() {
-	let remember = document.getElementById("rememberPayment").checked;
+	let session = localStorage.getItem("session");
 
-	if (remember) {
-		let session = localStorage.getItem("session");
-
-		findByField("payments", "session", session)
-			.then(() => {
-				// info found (update)
-				updatePaymentInfo(session);
-			})
-			.catch(() => {
-				// didn't find (insert)
-				insertPaymentInfo();
-			});
-	}
+	findByField("payments", "session", session)
+		.then(() => {
+			// info found (update)
+			updatePaymentInfo(session);
+		})
+		.catch(() => {
+			// didn't find (insert)
+			insertPaymentInfo(session);
+		});
 }
 
 async function findByField(table, field, value) {
@@ -30,36 +26,6 @@ async function findByField(table, field, value) {
 	});
 }
 
-function insertPaymentInfo() {
-	const info = {
-		table: "payments",
-		session: localStorage.getItem("session"),
-		cardName: document.getElementById("cardName").value,
-		cardNumber: document.getElementById("cardNumber").value,
-		expirationDate: document.getElementById("expirationDate").value,
-		cvv: document.getElementById("cvv").value,
-	};
-
-	fetch("/insert", {
-		method: "POST",
-		body: JSON.stringify(info),
-		headers: {
-			"Content-Type": "application/json", // Set content type as JSON
-		},
-	})
-		.then((response) => {
-			if (!response.ok) throw new Error("Failed to insert payment info");
-			return response.json(); // Return JSON for further use if needed
-		})
-		.then((json) => {
-			// console.log(json);
-		})
-		.catch((error) => {
-			console.error("Insert error:", error);
-			alert("Failed to register. Please try again.");
-		});
-}
-
 function updatePaymentInfo(session) {
 	const info = {
 		session: session,
@@ -67,6 +33,7 @@ function updatePaymentInfo(session) {
 		cardNumber: document.getElementById("cardNumber").value,
 		expirationDate: document.getElementById("expirationDate").value,
 		cvv: document.getElementById("cvv").value,
+		rememberPayment: document.getElementById("rememberPayment").checked,
 	};
 
 	fetch("/update", {
@@ -92,21 +59,45 @@ function updatePaymentInfo(session) {
 		});
 }
 
-//* ==================================================================== ADRESS
+function insertPaymentInfo(session) {
+	const info = {
+		table: "payments",
+		session: session,
+		cardName: document.getElementById("cardName").value,
+		cardNumber: document.getElementById("cardNumber").value,
+		expirationDate: document.getElementById("expirationDate").value,
+		cvv: document.getElementById("cvv").value,
+		rememberPayment: document.getElementById("rememberPayment").checked,
+	};
 
-function insert_update_adress() {
-	let save = document.getElementById("saveDelivery").checked;
-
-	if (save) {
-		console.log("2");
-		updateProfileInfo();
-	}
+	fetch("/insert", {
+		method: "POST",
+		body: JSON.stringify(info),
+		headers: {
+			"Content-Type": "application/json", // Set content type as JSON
+		},
+	})
+		.then((response) => {
+			if (!response.ok) throw new Error("Failed to insert payment info");
+			return response.json(); // Return JSON for further use if needed
+		})
+		.then((json) => {
+			// console.log(json);
+		})
+		.catch((error) => {
+			console.error("Insert error:", error);
+			alert("Failed to register. Please try again.");
+		});
 }
 
-function updateProfileInfo() {
-	session = localStorage.getItem("session");
+//* ==================================================================== ADRESS
 
-	console.log("3");
+function updateProfileInfo() {
+	if (!document.getElementById("saveDelivery").checked) {
+		return;
+	}
+
+	session = localStorage.getItem("session");
 
 	const newProfileInfo = {
 		country: document.getElementById("country").value,
@@ -115,8 +106,6 @@ function updateProfileInfo() {
 		postalcode: document.getElementById("postalCode").value,
 		receptorname: document.getElementById("receptorname").value,
 	};
-
-	console.log(newProfileInfo);
 
 	fetch("/update", {
 		method: "PUT",
@@ -146,20 +135,19 @@ function updateProfileInfo() {
 window.addEventListener("DOMContentLoaded", loadPaymentInfo);
 async function loadPaymentInfo() {
 	try {
-		const session = localStorage.getItem("session"); // ✅ Still gets the session email
+		const session = localStorage.getItem("session");
 
-		// Fetch data to load or reload values
 		const payment = await findByField("payments", "session", session);
+		if (payment.rememberpayment) {
+			document.getElementById("cardName").value = payment.cardname || "";
+			document.getElementById("cardNumber").value = payment.cardnumber || "";
+			document.getElementById("expirationDate").value = payment.expirationdate || "";
+			document.getElementById("cvv").value = payment.cvv || "";
+			document.getElementById("rememberPayment").checked = payment.rememberpayment;
+		}
 
 		const adress = await findByField("profiles", "email", session);
 
-		// Refill payment fields
-		document.getElementById("cardName").value = payment.cardname || "test";
-		document.getElementById("cardNumber").value = payment.cardnumber || "";
-		document.getElementById("expirationDate").value = payment.expirationdate || "";
-		document.getElementById("cvv").value = payment.cvv || "";
-
-		// Refill address fields
 		document.getElementById("country").value = adress.country || "";
 		document.getElementById("city").value = adress.city || "";
 		document.getElementById("adress").value = adress.adress || "";

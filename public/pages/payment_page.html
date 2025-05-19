@@ -57,16 +57,13 @@
 						<h5>Informações de Pagamento</h5>
 
 						Name on card
-						<input type="text" name="Name on card" id="cardName" class="form-control p2g-input" placeholder="Stan Smith" />
+						<input type="text" name="Name on card" id="cardName" class="form-control p2g-input" />
 
-						Card Number
-						<input type="number" mame="Card Number" id="cardNumber" class="form-control p2g-input" placeholder="4562 2475 9812 3972" />
-
-						Expiration Date
-						<input type="text" name="Expiration Date" id="expirationDate" class="form-control p2g-input" placeholder="12/30" />
+						Card Number <input type="number" mame="Card Number" id="cardNumber" class="form-control p2g-input" " /> Expiration Date
+						<input type="text" name="Expiration Date" id="expirationDate" class="form-control p2g-input" placeholder="mm/aaaa" />
 
 						CVV
-						<input type="number" name="CVV" id="cvv" class="form-control p2g-input" placeholder="123" />
+						<input type="number" name="CVV" id="cvv" class="form-control p2g-input" />
 
 						<div class="form-check mt-2 ms-1">
 							<input class="form-check-input p2g-checkbox" type="checkbox" id="rememberPayment" />
@@ -88,19 +85,19 @@
 						<h5>Informações de Entrega</h5>
 
 						Country
-						<input type="text" name="Country" id="country" class="form-control p2g-input" placeholder="Germany" />
+						<input type="text" name="Country" id="country" class="form-control p2g-input" />
 
 						City
-						<input type="text" name="City" id="city" class="form-control p2g-input" placeholder="Hamburg" />
+						<input type="text" name="City" id="city" class="form-control p2g-input" />
 
 						Adress
-						<input type="text" name="Adress" id="adress" class="form-control p2g-input" placeholder="Rödingsmarkt 39, 20459" />
+						<input type="text" name="Adress" id="adress" class="form-control p2g-input" />
 
 						Postal Code
-						<input type="text" name="Postal Code" id="postalCode" class="form-control p2g-input" placeholder="2537-135" />
+						<input type="text" name="Postal Code" id="postalCode" class="form-control p2g-input" />
 
 						Deliver to:
-						<input type="text" name="Deliver to" id="receptorname" class="form-control p2g-input" placeholder="Lukas Schneider" />
+						<input type="text" name="Deliver to" id="receptorname" class="form-control p2g-input" />
 
 						<div class="form-check mt-2 ms-1">
 							<input class="form-check-input p2g-checkbox" type="checkbox" id="saveDelivery" />
@@ -109,17 +106,21 @@
 
 						<div class="d-flex justify-content-between mt-3">
 							<button class="btn btn-secondary" onclick="goToTab('payment') ">Back to Payment</button>
-							<button
-								class="btn btn-success"
-								onclick="if(validatePaymentForm('address-section')) { insertData(); goToTab('confirm'); insert_update_adress(); }"
-							>
+							<button class="btn btn-success" onclick="if(validatePaymentForm('address-section')) { insertData(); goToTab('confirm'); updateProfileInfo(); }">
 								Finish Order
 							</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-7 step-section d-none" id="confirm-section">
-					<div class="p2g-front p-3">Payment confirmed</div>
+				<div class="col-12 step-section d-none" id="confirm-section">
+					<div class="p2g-front p-3 text-center">
+						<h5>Payment Confirmed</h5>
+						<p>Sent to <span id="confirm-address">[address]</span></p>
+						<p>To <span id="confirm-name">[name]</span></p>
+						<p>Should arrive in <span id="confirm-days">[x]</span> days</p>
+						<p>Thank you for your purchase!</p>
+						<a href="/pages/home_page.html" class="btn btn-primary mt-3">Return to Home Page</a>
+					</div>
 				</div>
 			</div>
 		</div>

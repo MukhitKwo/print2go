@@ -80,7 +80,7 @@ fileInput.addEventListener("change", (event) => {
 		console.log("Size: ", file.size / 1024);
 		console.log("Price: ", price);
 
-		document.getElementById("cost").textContent = price.toFixed(2).replace(".", ",");
+		document.getElementById("cost").textContent = price.toFixed(2);
 		document.getElementById("time").textContent = 5;
 
 		fileTrigger.classList.add("hidden");

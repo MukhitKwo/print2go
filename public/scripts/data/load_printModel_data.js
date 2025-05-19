@@ -29,7 +29,6 @@ async function loadPrintData() {
 		console.log("Loading print values.");
 
 		const print = await findByField("prints", "id", id);
-		console.log(print);
 
 		document.getElementById("name").value = print.name || "";
 		document.getElementById("quantity").value = print.quantity || "";
@@ -51,6 +50,8 @@ async function loadPrintData() {
 		document.getElementById("scaleZ").value = print.scalez || "";
 		document.getElementById("adicionalInfo").value = print.adicionalinfo || "";
 		document.getElementById("urgent").checked = print.urgent || false;
+		document.getElementById("cost").textContent = print.price || "";
+		document.getElementById("time").textContent = getDayFromISODate(print.enddate) || "";
 
 		//chnage submit button to save
 		document.getElementById("submitPrint").classList.add("d-none");
@@ -86,7 +87,6 @@ async function loadModelData() {
 		console.log("Loading model values.");
 
 		const model = await findByField("models", "id", id);
-		console.log(model);
 
 		document.getElementById("name").value = model.name || "";
 		document.getElementById("fileType").value = model.filetype || "";
@@ -95,6 +95,8 @@ async function loadModelData() {
 		document.getElementById("levelDetail").value = model.leveldetail || "";
 		document.getElementById("addTolerance").checked = model.addtolerance || "";
 		document.getElementById("urgent").checked = model.urgent || "";
+		document.getElementById("cost").textContent = model.price || "";
+		document.getElementById("time").textContent = getDayFromISODate(model.enddate) || "";
 
 		document.getElementById("submitModel").classList.add("d-none");
 		document.getElementById("updateModel").classList.remove("d-none");
@@ -107,7 +109,6 @@ async function loadModelData() {
 			loadFileToGrid(file);
 		});
 
-		console.log(allFiles);
 	} catch (err) {
 		console.error("Error loading model data:", err);
 	}
@@ -151,4 +152,9 @@ function loadFileToGrid(file) {
 	inputGroup.appendChild(deleteBtn);
 	fileDiv.appendChild(inputGroup);
 	fileGrid.appendChild(fileDiv);
+}
+
+function getDayFromISODate(isoDateStr) {
+	const date = new Date(isoDateStr);
+	return date.getUTCDate(); // or .getDate() depending on what you want
 }

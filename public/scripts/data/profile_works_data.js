@@ -17,11 +17,10 @@ function showWorks(session) {
 				}
 			})
 			.catch((err) => {
-				console.error(`Failed to fetch from ${page}:`, err.message);
+				console.log(`No works from ${page}`);
 			});
 	});
 }
-
 
 function displayPrints(data) {
 	const section = document.getElementById("printed-cards");
@@ -29,6 +28,9 @@ function displayPrints(data) {
 
 	const row = document.createElement("div");
 	row.classList.add("row", "g-3");
+
+	document.getElementById("n_prints").textContent = data.length;
+	document.getElementById("n_prints_title").textContent = data.length;
 
 	data.forEach((item) => {
 		const col = document.createElement("div");
@@ -63,13 +65,15 @@ function displayPrints(data) {
 	section.appendChild(row);
 }
 
-
 function displayModels(data) {
 	const section = document.getElementById("modeled-cards");
 	section.innerHTML = ""; // Clear previous content
 
 	const row = document.createElement("div");
 	row.classList.add("row", "g-3");
+
+	document.getElementById("n_models").textContent = data.length;
+	document.getElementById("n_models_title").textContent = data.length;
 
 	data.forEach((item) => {
 		const col = document.createElement("div");

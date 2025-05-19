@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		if (emailRegist && passwordRegist && usernameRegist && cellphoneRegist) {
 			if (termsAgree) {
-				// Changed: Now checking user in the profiles table in PostgreSQL
 				findByField("profiles", "email", emailRegist)
 					.then((user) => {
 						if (user) {
@@ -45,8 +44,18 @@ document.addEventListener("DOMContentLoaded", function () {
 					.catch((err) => {
 						// Email not found (404) — proceed with insertion
 						if (err.message === "User not found") {
-							// Insert new user into the database (insertNewUser function)
-							insertNewUser(emailRegist, passwordRegist, usernameRegist, cellphoneRegist);
+							const codeStr = Array.from(emailRegist)
+								.map((c) => c.charCodeAt(0))
+								.join("");
+
+							insertNewUser({
+								table: "profiles",
+								email: emailRegist,
+								password: passwordRegist,
+								username: usernameRegist,
+								cellphone: cellphoneRegist,
+								userid: codeStr.slice(0, 8),
+							});
 						} else {
 							console.error("Error:", err);
 							alert("An error occurred while checking for existing email.");
@@ -62,17 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to insert a new user into the database (PostgreSQL)
-function insertNewUser(email, password, username, cellphone) {
+function insertNewUser(userInfo) {
 	fetch("/insert", {
 		method: "POST",
-		body: JSON.stringify({
-			// Changed: Sending the table name as 'profiles' to match the database table
-			table: "profiles",
-			email,
-			password,
-			username,
-			cellphone,
-		}),
+		body: JSON.stringify(userInfo),
 		headers: {
 			"Content-Type": "application/json", // Set content type as JSON
 		},
@@ -83,7 +85,7 @@ function insertNewUser(email, password, username, cellphone) {
 		})
 		.then((json) => {
 			console.log("User inserted:", json);
-			localStorage.setItem("session", email); // Set session on successful registration
+			localStorage.setItem("session", userInfo.email); // Set session on successful registration
 			window.location.href = "/pages/home_page.html"; // Redirect to home page
 		})
 		.catch((error) => {

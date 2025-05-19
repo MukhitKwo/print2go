@@ -42,7 +42,7 @@ app.post("/insert", async (req, res) => {
 				$11, $12, $13, $14,
 				$15, $16, $17, $18, $19,
 				$20, $21, $22, $23, $24
-				) RETURNING id;`;
+				)`;
 			values = [
 				req.body.session,
 				req.body.model,
@@ -96,20 +96,20 @@ app.post("/insert", async (req, res) => {
 			query = `
 				INSERT INTO profiles (
 				email, username, password, cellphone,
-				country, city, adress, postalCode, receptorName
+				country, city, adress, postalCode, receptorName, userid
 				) VALUES (
 				$1, $2, $3, $4,
-				NULL, NULL, NULL, NULL, NULL
+				NULL, NULL, NULL, NULL, NULL, $5
 				);`;
 
-			values = [req.body.email, req.body.username, req.body.password, req.body.cellphone];
+			values = [req.body.email, req.body.username, req.body.password, req.body.cellphone, req.body.userid];
 		} else if (req.body.table === "payments") {
 			query = `
 				INSERT INTO payments (
-				session, cardName, cardNumber, expirationDate,cvv) 
-				VALUES ($1, $2, $3, $4, $5);`;
+				session, cardName, cardNumber, expirationDate, cvv, rememberPayment) 
+				VALUES ($1, $2, $3, $4, $5, $6);`;
 
-			values = [req.body.session, req.body.cardName, req.body.cardNumber, req.body.expirationDate, req.body.cvv];
+			values = [req.body.session, req.body.cardName, req.body.cardNumber, req.body.expirationDate, req.body.cvv, req.body.rememberPayment];
 		} else {
 			return res.status(400).json({ error: "Unknown table" });
 		}
