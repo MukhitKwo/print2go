@@ -51,7 +51,7 @@ async function loadPrintData() {
 		document.getElementById("adicionalInfo").value = print.adicionalinfo || "";
 		document.getElementById("urgent").checked = print.urgent || false;
 		document.getElementById("cost").textContent = print.price || "";
-		document.getElementById("time").textContent = getDaysDifferenceFromToday(print.enddate) || "";
+		document.getElementById("time").textContent = getDaysDifferenceFromToday(print.enddate);
 
 		//chnage submit button to save
 		document.getElementById("submitPrint").classList.add("d-none");
@@ -162,7 +162,7 @@ function getDaysDifferenceFromToday(isoDateStr) {
 	const utcToday = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
 
 	const msPerDay = 24 * 60 * 60 * 1000;
-	const daysDifference = Math.floor((utcInput - utcToday) / msPerDay);
+	 daysDifference = Math.floor((utcInput - utcToday) / msPerDay);
 
 	if (daysDifference < 0) {
 		daysDifference = 0;

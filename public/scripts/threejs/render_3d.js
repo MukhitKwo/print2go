@@ -12,7 +12,7 @@ const width = canvas.clientWidth;
 const height = canvas.clientHeight;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xD3D3D3);
+scene.background = new THREE.Color(0x000000);
 
 const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
 camera.position.set(1, 1, 1);
@@ -32,7 +32,10 @@ const directionalLightBottom = new THREE.DirectionalLight(0xffffff, 1);
 directionalLightBottom.position.set(-5, -10, -7.5);
 scene.add(directionalLightBottom);
 
-let currentMesh = null;
+let defaultCube = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), new THREE.MeshStandardMaterial({ color: 0x8e1616 }));
+scene.add(defaultCube);
+
+let currentMesh = defaultCube;
 
 fileInput.addEventListener("change", (event) => {
 	const file = event.target.files[0];
@@ -50,7 +53,7 @@ fileInput.addEventListener("change", (event) => {
 		const geometry = loader.parse(contents);
 
 		const material = new THREE.MeshStandardMaterial({
-			color: 0x607d8b,
+			color: 0xffffff,
 			metalness: 0.5,
 			roughness: 0.7,
 		});
@@ -80,8 +83,6 @@ fileInput.addEventListener("change", (event) => {
 		scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
 		const price = calculateCost(geometry);
-		console.log("Size: ", file.size / 1024);
-		console.log("Price: ", price);
 
 		document.getElementById("cost").textContent = price.toFixed(2);
 		document.getElementById("time").textContent = 5;

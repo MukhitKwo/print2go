@@ -25,23 +25,23 @@
 }
 
 .p2g-input,
-.p2g-input:focus {
+.p2g-input:focus,
+.p2g-input-group {
 	background-color: var(--color-4);
 	color: var(--color-1);
-	/* border: 3px var(--color-4) solid; */
 	border: none;
 	outline: none;
 	box-shadow: none;
 }
 
-.p2g-input::placeholder {
-	/* color: var(--color-7); */
-}
-
 .p2g-input:disabled {
 	background-color: var(--color-4);
-	color: rgb(38, 38, 38);
+	color: rgb(135, 38, 38);
 	border: none;
+}
+
+.p2g-input-group {
+	border-right: 3px var(--color-3) solid;
 }
 
 .p2g-select,
@@ -62,8 +62,28 @@
 	transform: scale(1.5);
 }
 
-.p2g-button {
+.p2g-panel-button {
 	background-color: var(--color-3);
+	color: var(--color-6);
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.p2g-panel-button:hover {
+	background-color: var(--color-5) !important;
+	color: white !important;
+	border: none;
+}
+
+.p2g-panel-button.active {
+	background-color: var(--color-4) !important;
+	color: white !important;
+	border: none;
+}
+
+.p2g-button {
+	background-color: var(--color-4);
 	color: var(--color-6);
 	border: none;
 	outline: none;
@@ -75,27 +95,6 @@
 	color: white !important;
 	border: none;
 }
-
-.p2g-button.active {
-	background-color: var(--color-4) !important;
-	color: white !important;
-	border: none;
-}
-
-.p2g-login-button {
-	background-color: var(--color-4);
-	color: var(--color-6);
-	border: none;
-	outline: none;
-	box-shadow: none;
-}
-
-.p2g-login-button:hover {
-	background-color: var(--color-5) !important;
-	color: white !important;
-	border: none;
-}
-
 
 .p2g-radio {
 	width: 100%;

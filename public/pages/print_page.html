@@ -10,6 +10,7 @@
 			integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 		<link rel="stylesheet" href="../styles/primary_colors.css" />
 		<link rel="stylesheet" href="../styles/element_style.css" />
 	</head>
@@ -150,6 +151,8 @@
 									value="0.2"
 									step="0.05"
 									min="0.1"
+									,
+									max="1"
 									onchange="qualityPresetSetCustom()"
 								/>
 							</div>
@@ -167,17 +170,28 @@
 							</select>
 
 							<div class="ms-4 mt-2">
-								Infill %
-								<input
-									type="number"
-									class="form-control w-25 p2g-input"
-									id="infillPercent"
-									name="Infill Percentage"
-									value="20"
-									onchange="durabilityPresetSetCustom()"
-								/>
+								Infill
+								<span title="% of the print's inside that has plastic, high infill results in a much stronger print" style="cursor: pointer; font-size: small"
+									><i class="bi bi-info-circle"></i
+								></span>
+								<div class="input-group w-25 mt-2">
+									<input
+										type="number"
+										class="form-control w-25 p2g-input"
+										id="infillPercent"
+										name="Infill Percentage"
+										value="20"
+										onchange="durabilityPresetSetCustom()"
+									/>
+									<span class="input-group-text rounded-start-0 p2g-input fw-semibold">%</span>
+								</div>
 
 								Type of infill
+								<span
+									title="Format of the print's infill, diferent types have diferent advantages, such as strength, elasticity and resistance"
+									style="cursor: pointer; font-size: small"
+									><i class="bi bi-info-circle"></i
+								></span>
 								<select class="form-select w-25 p2g-select p2g-select-arrow" id="infillType" name="Infill Type" onchange="durabilityPresetSetCustom()">
 									<option value="lines">Lines</option>
 									<option value="triangular">Triangular</option>
@@ -226,20 +240,28 @@
 								<option value="minimal">Minimal</option>
 							</select>
 
-							Support Density %
-							<input type="number" class="form-control w-25 p2g-input" id="supportDensity" name="Support Density" value="5" min="1" />
+							Support Density
+							<div class="input-group w-25 mt-2">
+								<input type="number" class="form-control w-25 p2g-input" id="supportDensity" name="Support Density" value="5" min="1" />
+								<span class="input-group-text rounded-start-0 p2g-input fw-semibold">%</span>
+							</div>
 
 							<div class="form-check mt-2 ms-1">
 								<input class="form-check-input p2g-checkbox" type="checkbox" id="smoothPrint" name="Smooth Print" value="" />
 								<label class="form-check-label" for="smoothPrint"> Smooth print </label>
+								<span title="Make the outside of the print smoother after it finishes" style="cursor: pointer; font-size: small"
+									><i class="bi bi-info-circle"></i
+								></span>
 							</div>
 						</div>
 
 						<!-- ?SCALE -->
 						<div class="p-3 p2g-separator">
 							Scale of the 3D print
-							<input type="number" class="form-control w-25 p2g-input" id="scaleXYZ" name="Overall Scale" value="100" oninput="scaleValues()" />
-
+							<div class="input-group w-25 mt-2">
+								<input type="number" class="form-control w-25 p2g-input" id="scaleXYZ" name="Overall Scale" value="100" oninput="scaleValues()" />
+								<span class="input-group-text rounded-start-0 p2g-input fw-semibold">%</span>
+							</div>
 							<div class="form-check mt-2 ms-1">
 								<input class="form-check-input p2g-checkbox" type="checkbox" id="uniformScale" name="Uniform Scale" checked />
 								<label class="form-check-label" for="uniformScale"> Uniform scale </label>
@@ -247,16 +269,19 @@
 
 							<div class="ms-4 mt-3">
 								<div class="input-group w-25 mt-2">
-									<span class="input-group-text rounded-end-0 p2g-input fw-semibold">X</span>
+									<span class="input-group-text rounded-end-0 p2g-input-group fw-semibold">X</span>
 									<input type="text" class="form-control p2g-input" id="scaleX" name="Scale X" value="100" disabled />
+									<span class="input-group-text rounded-start-0 p2g-input fw-semibold">%</span>
 								</div>
 								<div class="input-group w-25 mt-2">
-									<span class="input-group-text rounded-end-0 p2g-input fw-semibold">Y</span>
+									<span class="input-group-text rounded-end-0 p2g-input-group fw-semibold">Y</span>
 									<input type="text" class="form-control p2g-input" id="scaleY" name="Scale Y" value="100" disabled />
+									<span class="input-group-text rounded-start-0 p2g-input fw-semibold">%</span>
 								</div>
 								<div class="input-group w-25 mt-2">
-									<span class="input-group-text rounded-end-0 p2g-input fw-semibold">Z</span>
+									<span class="input-group-text rounded-end-0 p2g-input-group fw-semibold">Z</span>
 									<input type="text" class="form-control p2g-input" id="scaleZ" name="Scale Z" value="100" disabled />
+									<span class="input-group-text rounded-start-0 p2g-input fw-semibold">%</span>
 								</div>
 							</div>
 						</div>
@@ -303,6 +328,51 @@
 			</div>
 		</div>
 
+		<footer class="bg-black text-white text-center py-4 mt-5">
+			<div class="container">
+				<div class="row">
+					<!-- Contact Information -->
+					<div class="col-md-4">
+						<h5>Contact Us</h5>
+						<p>Email: <a href="mailto:info@yourwebsite.com" class="text-white">info@yourwebsite.com</a></p>
+						<p>Phone: <a href="tel:+1234567890" class="text-white">+1 (234) 567-890</a></p>
+						<p>Address: 1234 Your Street, Your City, Your Country</p>
+					</div>
+
+					<!-- Quick Links -->
+					<div class="col-md-4 ">
+						<h5>Quick Links</h5>
+						<ul class="list-unstyled">
+							<li><a href="/about" class="text-white">About Us</a></li>
+							<li><a href="/services" class="text-white">Services</a></li>
+							<li><a href="/faq" class="text-white">FAQ</a></li>
+							<li><a href="/contact" class="text-white">Contact</a></li>
+							<li><a href="/terms" class="text-white">Terms of Service</a></li>
+							<li><a href="/privacy" class="text-white">Privacy Policy</a></li>
+						</ul>
+					</div>
+
+					<!-- Social Media Links -->
+					<div class="col-md-4">
+						<h5>Follow Us</h5>
+						<p>Stay connected with us on social media:</p>
+						<a href="https://www.facebook.com/yourwebsite" class="text-white mx-2" target="_blank"> <i class="fab fa-facebook"></i> Facebook </a>
+						<a href="https://www.instagram.com/yourwebsite" class="text-white mx-2" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a>
+						<a href="https://twitter.com/yourwebsite" class="text-white mx-2" target="_blank"> <i class="fab fa-twitter"></i> Twitter </a>
+						<a href="https://www.linkedin.com/company/yourwebsite" class="text-white mx-2" target="_blank"> <i class="fab fa-linkedin"></i> LinkedIn </a>
+					</div>
+				</div>
+
+				<hr class="bg-white" />
+
+				<div class="row">
+					<div class="col-12">
+						<p>© 2025 Print2Go. All Rights Reserved.</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
@@ -320,8 +390,5 @@
 		<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 		<script src="../scripts/threejs/render_3d.js" type="module"></script>
-
-		<!-- <script src="https://unpkg.com/three@0.154.0/examples/jsm/loaders/STLLoader.js"></script> -->
-		<!-- <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/STLLoader.js"></script> -->
 	</body>
 </html>

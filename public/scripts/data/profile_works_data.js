@@ -37,19 +37,21 @@ function displayPrints(data) {
 		col.classList.add("col-md-4", "d-flex", "justify-content-center");
 
 		const card = document.createElement("div");
-		card.classList.add("card", "h-100", "ratio", "ratio-1x1", "overflow-hidden", "p-0");
+		card.classList.add("card", "border-0", "h-100", "ratio", "ratio-1x1", "overflow-hidden", "p-0");
 		card.style.cursor = "pointer";
+		card.style.backgroundColor = "var(--color-4)";
+		card.style.color = "white";
 
 		card.dataset.id = item.id;
 		card.dataset.type = "print";
 
 		card.innerHTML = `
 			<div class="d-flex flex-column w-100 h-100">
-				<img src="../img/cube.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
-				<div class="card-body d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
-					<p class="text-success fw-semibold small mb-1">${deliveryStatus(item.enddate)}</p>
+				<img src="../img/profile_imgs/cubePrint.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
+				<div class="d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
+					<p class="fw-semibold small mb-1 text-muted">${deliveryStatus(item.enddate)}</p>
 					<h6 class="card-title mb-1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
-					<p class="card-text text-muted small">? weeks ago</p>
+					<p class="card-text text-muted small mt-2">Click to show more info about print</p>
 				</div>
 			</div>`;
 
@@ -79,19 +81,21 @@ function displayModels(data) {
 		col.classList.add("col-md-4", "d-flex", "justify-content-center");
 
 		const card = document.createElement("div");
-		card.classList.add("card", "h-100", "ratio", "ratio-1x1", "overflow-hidden", "p-0");
+		card.classList.add("card", "border-0", "h-100", "ratio", "ratio-1x1", "overflow-hidden", "p-0");
 		card.style.cursor = "pointer";
+		card.style.backgroundColor = "var(--color-4)";
+		card.style.color = "white";
 
 		card.dataset.id = item.id;
 		card.dataset.type = "model";
 
 		card.innerHTML = `
 			<div class="d-flex flex-column w-100 h-100">
-				<img src="../img/cube.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
-				<div class="card-body d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
-					<p class="text-success fw-semibold small mb-1">${deliveryStatus(item.enddate)}</p>
+				<img src="../img/profile_imgs/cubeModel.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
+				<div class="d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
+					<p class="fw-semibold small mb-1 text-muted">${deliveryStatus(item.enddate)}</p>
 					<h6 class="card-title mb-1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
-					<p class="card-text text-muted small">? weeks ago</p>
+					<p class="card-text text-muted small mt-2">Click to show more info about model</p>
 				</div>
 			</div>`;
 
@@ -107,8 +111,6 @@ function displayModels(data) {
 }
 
 function deliveryStatus(date) {
-	console.log(date);
-
 	const inputDate = new Date(date);
 	const today = new Date();
 
@@ -116,11 +118,9 @@ function deliveryStatus(date) {
 	const utcInput = Date.UTC(inputDate.getUTCFullYear(), inputDate.getUTCMonth(), inputDate.getUTCDate());
 	const utcToday = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
 
-	console.log(utcInput, utcToday);
-
-	if (utcInput >= utcToday) {
-		return "In progress";
+	if (utcInput > utcToday) {
+		return "In progress...";
 	} else {
-		return "Delivered";
+		return "Delivered!";
 	}
 }

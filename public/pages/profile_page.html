@@ -57,7 +57,7 @@
 					<div class="p2g-panel rounded-bottom-0 d-flex flex-column justify-content-center align-items-center p-3">
 						<div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
 							<div class="text-center mt-3">
-								<img class="img-fluid object-fit-cover rounded-circle w-50 h-50" src="../img/profile.jpg" alt="Profile Image" />
+								<img class="img-fluid object-fit-cover rounded-circle w-50 h-50" src="../img/profile_imgs/profile.jpg" alt="Profile Image" />
 								<div class="mt-3">
 									<h5 class="mb-0"><strong id="profile-username">?</strong></h5>
 									<p class="mb-0">#<span id="profile-id">?</span></p>
@@ -69,12 +69,12 @@
 
 					<div class="list-group rounded-top-0" id="section-buttons">
 						<div></div>
-						<button type="button" class="list-group-item list-group-item-action p2g-button active" data-section="profile">My Profile</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-button" data-section="adress">Delivery Adress</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-button" data-section="printed">Printed models</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-button" data-section="modeled">Modeled models</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-button" data-section="settings">Settings</button>
-						<button type="button" id="logOut" class="list-group-item list-group-item-action p2g-button">Log Out</button>
+						<button type="button" class="list-group-item list-group-item-action p2g-panel-button active" data-section="profile">My Profile</button>
+						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="adress">Delivery Adress</button>
+						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="printed">Printed models</button>
+						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="modeled">Modeled models</button>
+						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="settings">Settings</button>
+						<button type="button" id="logOut" class="list-group-item list-group-item-action p2g-panel-button">Log Out</button>
 					</div>
 				</div>
 
@@ -119,12 +119,12 @@
 					</div>
 
 					<div class="p2g-panel p-3 section d-none" id="printed-section">
-						<h5>Printed Models (<span id="n_prints_title">0</span>)</h5>
+						<h5 class="m-0">Printed Models (<span id="n_prints_title">0</span>)</h5>
 						<div class="row" id="printed-cards"></div>
 					</div>
 
 					<div class="p2g-panel p-3 section d-none" id="modeled-section">
-						<h5>Modeled Models (<span id="n_models_title">0</span>)</h5>
+						<h5 class="m-0">Modeled Models (<span id="n_models_title">0</span>)</h5>
 						<div class="row" id="modeled-cards"></div>
 					</div>
 
