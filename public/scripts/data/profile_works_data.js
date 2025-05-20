@@ -47,12 +47,11 @@ function displayPrints(data) {
 			<div class="d-flex flex-column w-100 h-100">
 				<img src="../img/cube.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
 				<div class="card-body d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
-					<p class="text-success fw-semibold small mb-1">Complete</p>
-					<h6 class="card-title mb-1">Name: ${item.name}</h6>
-					<p class="card-text text-muted small">3 weeks ago</p>
+					<p class="text-success fw-semibold small mb-1">${deliveryStatus(item.enddate)}</p>
+					<h6 class="card-title mb-1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
+					<p class="card-text text-muted small">? weeks ago</p>
 				</div>
-			</div>
-		`;
+			</div>`;
 
 		card.addEventListener("click", () => {
 			window.location.href = `print_page.html?id=${item.id}`;
@@ -90,12 +89,11 @@ function displayModels(data) {
 			<div class="d-flex flex-column w-100 h-100">
 				<img src="../img/cube.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
 				<div class="card-body d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
-					<p class="text-success fw-semibold small mb-1">Complete</p>
-					<h6 class="card-title mb-1">Name: ${item.name}</h6>
-					<p class="card-text text-muted small">3 weeks ago</p>
+					<p class="text-success fw-semibold small mb-1">${deliveryStatus(item.enddate)}</p>
+					<h6 class="card-title mb-1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
+					<p class="card-text text-muted small">? weeks ago</p>
 				</div>
-			</div>
-		`;
+			</div>`;
 
 		card.addEventListener("click", () => {
 			window.location.href = `model_page.html?id=${item.id}`;
@@ -106,4 +104,23 @@ function displayModels(data) {
 	});
 
 	section.appendChild(row);
+}
+
+function deliveryStatus(date) {
+	console.log(date);
+
+	const inputDate = new Date(date);
+	const today = new Date();
+
+	// Normalize both dates to UTC midnight
+	const utcInput = Date.UTC(inputDate.getUTCFullYear(), inputDate.getUTCMonth(), inputDate.getUTCDate());
+	const utcToday = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+
+	console.log(utcInput, utcToday);
+
+	if (utcInput >= utcToday) {
+		return "In progress";
+	} else {
+		return "Delivered";
+	}
 }

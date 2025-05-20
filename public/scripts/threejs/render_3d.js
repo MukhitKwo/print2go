@@ -12,7 +12,7 @@ const width = canvas.clientWidth;
 const height = canvas.clientHeight;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0000ff);
+scene.background = new THREE.Color(0xD3D3D3);
 
 const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
 camera.position.set(1, 1, 1);
@@ -25,10 +25,12 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight.position.set(5, 10, 7.5);
-scene.add(directionalLight);
+const directionalLightTop = new THREE.DirectionalLight(0xffffff, 1);
+directionalLightTop.position.set(5, 10, 7.5);
+scene.add(directionalLightTop);
+const directionalLightBottom = new THREE.DirectionalLight(0xffffff, 1);
+directionalLightBottom.position.set(-5, -10, -7.5);
+scene.add(directionalLightBottom);
 
 let currentMesh = null;
 
@@ -73,7 +75,8 @@ fileInput.addEventListener("change", (event) => {
 		scene.clear();
 		currentMesh = mesh;
 		scene.add(currentMesh);
-		scene.add(directionalLight);
+		scene.add(directionalLightTop);
+		scene.add(directionalLightBottom);
 		scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
 		const price = calculateCost(geometry);

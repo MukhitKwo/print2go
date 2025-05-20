@@ -93,6 +93,9 @@ function insertPaymentInfo(session) {
 //* ==================================================================== ADRESS
 
 function updateProfileInfo() {
+	document.getElementById("confirm-address").textContent = document.getElementById("adress").value;
+	document.getElementById("confirm-name").textContent = document.getElementById("receptorname").value;
+
 	if (!document.getElementById("saveDelivery").checked) {
 		return;
 	}

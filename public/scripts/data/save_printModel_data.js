@@ -50,8 +50,8 @@ function getModelData() {
 		addTolerance: document.getElementById("addTolerance").checked,
 		urgent: document.getElementById("urgent").checked,
 		fileNames: allFiles,
-		price: document.getElementById("cost").textContent,
-		enddate: getDeliveryDate(+document.getElementById("time").textContent),
+		price: 99.99,
+		enddate: getDeliveryDate(9),
 	};
 }
 
@@ -65,6 +65,8 @@ function storeModelData() {
 
 function insertData() {
 	const data = JSON.parse(sessionStorage.getItem("data"));
+
+	document.getElementById("confirm-days").textContent = getDaysFromToday(data.enddate);
 
 	if (!data) {
 		console.warn("No data found in sessionStorage.");
@@ -82,12 +84,51 @@ function insertData() {
 		.then((json) => {
 			console.log("Server response:", json);
 			// Optional: clear storage or redirect again
-			sessionStorage.removeItem("data");
+			// sessionStorage.removeItem("data");
 		})
 		.catch((error) => {
 			console.error("Error sending model job data:", error);
 		});
 }
+
+function getDeliveryDate(days) {
+	const today = new Date();
+	const deliveryDate = new Date();
+
+	if (document.getElementById("urgent").checked) {
+		days *= 1.6;
+	}
+
+	deliveryDate.setDate(today.getDate() + days);
+
+	// Format as YYYY-MM-DD
+	const year = deliveryDate.getFullYear();
+	const month = String(deliveryDate.getMonth() + 1).padStart(2, "0"); // months are 0-based
+	const day = String(deliveryDate.getDate()).padStart(2, "0");
+
+	const formattedDate = `${year}-${month}-${day}`;
+
+	console.log("Estimated delivery date:", formattedDate);
+	return formattedDate;
+}
+
+function getDaysFromToday(dateStr) {
+	const today = new Date();
+	const targetDate = new Date(dateStr);
+
+	// Normalize both to UTC midnight to avoid time differences
+	const utcToday = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+	const utcTarget = Date.UTC(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+
+	const msPerDay = 24 * 60 * 60 * 1000;
+	const diffInMs = utcTarget - utcToday;
+	const days = Math.round(diffInMs / msPerDay);
+
+	console.log("Days from today:", days);
+	return days;
+}
+
+//*============================================================= UPDATE
 
 function getTableFromPage() {
 	const page = window.location.pathname;
@@ -127,20 +168,4 @@ async function updateData() {
 		console.error("Update failed:", err);
 		alert("Failed to update data.");
 	}
-}
-
-function getDeliveryDate(days) {
-	const today = new Date();
-	const deliveryDate = new Date();
-	deliveryDate.setDate(today.getDate() + days);
-
-	// Format as YYYY-MM-DD
-	const year = deliveryDate.getFullYear();
-	const month = String(deliveryDate.getMonth() + 1).padStart(2, "0"); // months are 0-based
-	const day = String(deliveryDate.getDate()).padStart(2, "0");
-
-	const formattedDate = `${year}-${month}-${day}`;
-
-	console.log("Estimated delivery date:", formattedDate);
-	return formattedDate;
 }

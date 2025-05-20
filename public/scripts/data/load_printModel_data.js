@@ -51,7 +51,7 @@ async function loadPrintData() {
 		document.getElementById("adicionalInfo").value = print.adicionalinfo || "";
 		document.getElementById("urgent").checked = print.urgent || false;
 		document.getElementById("cost").textContent = print.price || "";
-		document.getElementById("time").textContent = getDayFromISODate(print.enddate) || "";
+		document.getElementById("time").textContent = getDaysDifferenceFromToday(print.enddate) || "";
 
 		//chnage submit button to save
 		document.getElementById("submitPrint").classList.add("d-none");
@@ -96,7 +96,7 @@ async function loadModelData() {
 		document.getElementById("addTolerance").checked = model.addtolerance || "";
 		document.getElementById("urgent").checked = model.urgent || "";
 		document.getElementById("cost").textContent = model.price || "";
-		document.getElementById("time").textContent = getDayFromISODate(model.enddate) || "";
+		document.getElementById("time").textContent = getDaysDifferenceFromToday(model.enddate) || "";
 
 		document.getElementById("submitModel").classList.add("d-none");
 		document.getElementById("updateModel").classList.remove("d-none");
@@ -108,7 +108,6 @@ async function loadModelData() {
 		model.filenames.forEach((file) => {
 			loadFileToGrid(file);
 		});
-
 	} catch (err) {
 		console.error("Error loading model data:", err);
 	}
@@ -154,7 +153,20 @@ function loadFileToGrid(file) {
 	fileGrid.appendChild(fileDiv);
 }
 
-function getDayFromISODate(isoDateStr) {
-	const date = new Date(isoDateStr);
-	return date.getUTCDate(); // or .getDate() depending on what you want
+function getDaysDifferenceFromToday(isoDateStr) {
+	const inputDate = new Date(isoDateStr);
+	const today = new Date();
+
+	// Normalize both dates to UTC midnight to avoid timezone issues
+	const utcInput = Date.UTC(inputDate.getUTCFullYear(), inputDate.getUTCMonth(), inputDate.getUTCDate());
+	const utcToday = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+
+	const msPerDay = 24 * 60 * 60 * 1000;
+	const daysDifference = Math.floor((utcInput - utcToday) / msPerDay);
+
+	if (daysDifference < 0) {
+		daysDifference = 0;
+	}
+
+	return daysDifference;
 }

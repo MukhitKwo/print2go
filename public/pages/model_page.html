@@ -13,8 +13,8 @@
 			crossorigin="anonymous"
 		/>
 
-		<!-- Custom CSS -->
 		<link rel="stylesheet" href="../styles/primary_colors.css" />
+		<link rel="stylesheet" href="../styles/element_style.css" />
 	</head>
 
 	<body class="p2g-background text-light">
@@ -44,7 +44,7 @@
 							<a class="nav-link active" id="modelpage" href="/pages/model_page.html" name="Modeling Page">Modeling Page</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active d-none" id="goback" name="Go Back" onclick="window.history.back();">Go back</a>
+							<a class="nav-link active d-none" id="goback" name="Go Back" onclick="window.history.back();" style="cursor: pointer;">Go back</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" id="accountpage" href="/pages/profile_page.html" name="Account">Account</a>
@@ -58,11 +58,11 @@
 		<div class="container pt-5">
 			<input type="file" id="fileInput" multiple hidden />
 
-			<div class="border border-1" style="height: 222px; cursor: pointer" id="uploadArea">
-				<div class="bg-success w-100 h-100 d-flex justify-content-center align-items-center text-white">Insert files here</div>
+			<div class="" style="height: 222px; cursor: pointer" id="uploadArea">
+				<div class="bg-success bg-opacity-75 w-100 h-100 d-flex justify-content-center align-items-center text-white">Insert files here</div>
 			</div>
 
-			<div class="border border-1 border-top-0">
+			<div class="bg-success">
 				<div class="row row-cols-3" id="fileGrid"></div>
 			</div>
 		</div>
@@ -72,10 +72,10 @@
 			<div class="row my-3">
 				<!-- Form -->
 				<div class="col-8">
-					<div class="p2g-front">
+					<div class="p2g-panel">
 						<div class="p-3 border-bottom border-secondary">
 							Model Name
-							<input type="text" class="form-control w-50 p2g-input" id="name" value="Model Name" />
+							<input type="text" class="form-control w-75 p2g-input" id="name" name="Model Name" />
 
 							File Type
 							<select class="form-select w-25 p2g-select p2g-select-arrow" id="fileType">
@@ -118,7 +118,7 @@
 
 				<!-- Sidebar -->
 				<div class="col-4">
-					<div class="p2g-front p-3">
+					<div class="p2g-panel p-3">
 						<div class="d-flex justify-content-between fs-4">
 							<div>Cost</div>
 							<div><span id="cost">--,--</span> €</div>

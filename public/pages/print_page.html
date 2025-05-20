@@ -11,6 +11,7 @@
 			crossorigin="anonymous"
 		/>
 		<link rel="stylesheet" href="../styles/primary_colors.css" />
+		<link rel="stylesheet" href="../styles/element_style.css" />
 	</head>
 	<body class="p2g-background text-light">
 		<nav class="navbar navbar-expand-lg p2g-navbar navbar-dark">
@@ -36,7 +37,7 @@
 							<a class="nav-link active" id="modelpage" href="/pages/model_page.html" name="Modeling Page">Modeling Page</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active d-none" id="goback" name="Go Back" onclick="window.history.back();">Go back</a>
+							<a class="nav-link active d-none" id="goback" name="Go Back" onclick="window.history.back();" style="cursor: pointer">Go back</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active" id="accountpage" href="/pages/profile_page.html" name="Account">Account</a>
@@ -46,77 +47,76 @@
 			</div>
 		</nav>
 
-		
-
 		<div class="container pt-5">
-			<div class="row">
-				<div class="col">
-					<div class="d-flex justify-content-end">
-						<div class="ratio ratio-1x1 w-75">
-							<div class="border border-1">
-								<div
-									id="fileTrigger"
-									class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-success bg-opacity-75 text-white text-center rounded visible"
-									name="File Input Trigger"
-								>
-									<div>
-										<p class="mb-3">Select a 3D model file (.stl)</p>
-										<label class="btn btn-light text-dark">
-											Choose File
-											<input type="file" class="form-control" id="stlFileInput" name="Select 3D file" accept=".stl" hidden value="ola" />
-										</label>
-									</div>
+			<div class="row px-5">
+				<div class="col-4">
+					<div class="h-100">
+						<div class="ratio ratio-1x1">
+							<div
+								id="fileTrigger"
+								class="d-flex justify-content-center align-items-center bg-success bg-opacity-75 text-center rounded visible"
+								name="File Input Trigger"
+							>
+								<div>
+									<p class="mb-3">Select a 3D model file (.stl)</p>
+									<label class="btn btn-light text-dark">
+										Choose File
+										<input type="file" class="form-control" id="stlFileInput" name="Select 3D file" accept=".stl" hidden value="ola" />
+									</label>
 								</div>
+							</div>
 
-								<div id="viewer-container" class="w-100 h-100 hidden" name="Viewer Container">
-									<canvas id="threeCanvas" class="w-100 h-100" name="ThreeJS Canvas"></canvas>
-								</div>
+							<div id="viewer-container" class="w-100 h-100 hidden" name="Viewer Container">
+								<canvas id="threeCanvas" class="w-100 h-100" name="ThreeJS Canvas"></canvas>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="col">
-					<div class="d-flex mb-2">
-						<button type="button" class="btn btn-danger me-3" id="remove3dfile">Remove 3d Model</button>
-						<button type="button" class="btn btn-success" id="replace3dfile">Replace 3d Model</button>
-						<input type="hidden" id="hiddenFileName" name="hiddenFileName" />
-					</div>
+					<div class="p2g-panel p-3">
+						<div class="d-flex mb-2">
+							<button type="button" class="btn btn-danger me-3" id="remove3dfile">Remove 3d Model</button>
+							<button type="button" class="btn btn-success" id="replace3dfile">Replace 3d Model</button>
+							<input type="hidden" id="hiddenFileName" name="hiddenFileName" />
+						</div>
 
-					Print's name
-					<input type="text" class="form-control w-75 p2g-input" id="name" name="Print Name" placeholder="Name" />
+						Print's name
+						<input type="text" class="form-control w-75 p2g-input" id="name" name="Print Name" />
 
-					Quantity
-					<input type="number" class="form-control w-25 p2g-input" id="quantity" name="Quantity" value="1" min="1" />
+						Quantity
+						<input type="number" class="form-control w-25 p2g-input" id="quantity" name="Quantity" value="1" min="1" />
 
-					Material
-					<select class="form-select w-50 p2g-select p2g-select-arrow" id="material" name="Material">
-						<option value="pla" selected>PLA</option>
-						<option value="abs">ABS</option>
-						<option value="petg">PETG</option>
-					</select>
+						Material
+						<select class="form-select w-25 p2g-select p2g-select-arrow" id="material" name="Material">
+							<option value="pla" selected>PLA</option>
+							<option value="abs">ABS</option>
+							<option value="petg">PETG</option>
+						</select>
+						Color
+						<div class="d-flex">
+							<select class="form-select w-25 p2g-input" id="color" name="Color">
+								<option value="red" selected>Red</option>
+								<option value="green">Green</option>
+								<option value="blue">Blue</option>
+							</select>
 
-					Color
-					<select class="form-select w-25 p2g-input" id="color" name="Color">
-						<option value="red" selected>Red</option>
-						<option value="green">Green</option>
-						<option value="blue">Blue</option>
-					</select>
-
-					<div class="form-check mt-2 ms-1">
-						<input type="checkbox" class="form-check-input p2g-checkbox" id="multicolor" name="Multicolor" />
-						<label class="form-check-label" for="multicolor"> Multicolor </label>
+							<div class="form-check mt-2 ms-3">
+								<input type="checkbox" class="form-check-input p2g-checkbox" id="multicolor" name="Multicolor" />
+								<label class="form-check-label" for="multicolor"> Multicolor </label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="container py-5 px-5">
+		<div class="container mt-4">
 			<div class="row">
 				<div class="col-8">
-					<div class="p2g-front">
+					<div class="p2g-panel">
 						<!-- ?QUALITY -->
-						<div class="p-3 border-bottom border-secondary">
+						<div class="p-3 p2g-separator">
 							Nozzle diameter | Layer height
 							<select class="form-select w-50 p2g-select p2g-select-arrow" id="qualityPreset" name="Quality Preset" onchange="qualityPreset()">
 								<option value="" selected hidden>Chose a preset</option>
@@ -156,7 +156,7 @@
 						</div>
 
 						<!-- ?DURABILITY -->
-						<div class="p-3 border-bottom border-secondary">
+						<div class="p-3 p2g-separator">
 							Durability
 							<select class="form-select w-50 p2g-select p2g-select-arrow" id="durabilityPreset" name="Durability Preset" onchange="durabilityPreset()">
 								<option value="" selected hidden>Select an option</option>
@@ -213,7 +213,7 @@
 						</div>
 
 						<!-- ?SUPPORT -->
-						<div class="p-3 border-bottom border-secondary">
+						<div class="p-3 p2g-separator">
 							<div class="form-check ms-1">
 								<input class="form-check-input p2g-checkbox" type="checkbox" id="useSupport" name="Use Support" value="" checked />
 								<label class="form-check-label" for="useSupport"> Allow support </label>
@@ -236,7 +236,7 @@
 						</div>
 
 						<!-- ?SCALE -->
-						<div class="p-3 border-bottom border-secondary">
+						<div class="p-3 p2g-separator">
 							Scale of the 3D print
 							<input type="number" class="form-control w-25 p2g-input" id="scaleXYZ" name="Overall Scale" value="100" oninput="scaleValues()" />
 
@@ -270,7 +270,7 @@
 				</div>
 
 				<div class="col-4">
-					<div class="p2g-front p-3">
+					<div class="p2g-panel p-3">
 						<div class="d-flex justify-content-between fs-4">
 							<div>Cost of print</div>
 							<div><span id="cost">--,--</span> €</div>
@@ -282,7 +282,7 @@
 
 						<div class="form-check mt-2 ms-1">
 							<input class="form-check-input p2g-checkbox" type="checkbox" id="urgent" name="Urgent" value="" />
-							<label class="form-check-label" for="urgent"> Urgent (+ 20%)</label>
+							<label class="form-check-label" for="urgent"> Urgent (+ 60%)</label>
 						</div>
 
 						<div class="mt-4">
@@ -293,7 +293,12 @@
 					<button type="button" id="submitPrint" name="Submit Print" class="btn btn-success w-100 mt-3" onclick="storePrintData()">Send 3D Print</button>
 					<button type="button" id="updatePrint" name="Update Print" class="btn btn-primary w-100 mt-3 d-none" onclick="updateData()">Save 3D Print</button>
 
-					<div class="mt-2">License</div>
+					<div class="mt-2">
+						<div class="small">
+							By uploading a 3D model, you confirm that you own the rights to use and print the file or have permission from the rights holder. Our service does
+							not assume responsibility for copyrighted or restricted designs. All prints are made under the assumption of legal and authorized use.
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
