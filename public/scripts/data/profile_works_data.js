@@ -32,6 +32,8 @@ function displayPrints(data) {
 	document.getElementById("n_prints").textContent = data.length;
 	document.getElementById("n_prints_title").textContent = data.length;
 
+	data.sort((a, b) => b.id - a.id);
+
 	data.forEach((item) => {
 		const col = document.createElement("div");
 		col.classList.add("col-6", "col-lg-4", "d-flex", "justify-content-center");
@@ -50,7 +52,7 @@ function displayPrints(data) {
 				<img src="../img/profile_imgs/cubePrint.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
 				<div class="d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
 					<p class="fw-semibold small mb-1 text-muted">${deliveryStatus(item.enddate)}</p>
-					<h6 class="card-title mb-1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
+					<h6 class="card-title mb-1 text-black" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
 					<p class="card-text text-muted small mt-2">Click to show more info about print</p>
 				</div>
 			</div>`;
@@ -76,6 +78,8 @@ function displayModels(data) {
 	document.getElementById("n_models").textContent = data.length;
 	document.getElementById("n_models_title").textContent = data.length;
 
+	data.sort((a, b) => b.id - a.id);
+
 	data.forEach((item) => {
 		const col = document.createElement("div");
 		col.classList.add("col-6", "col-lg-4", "d-flex", "justify-content-center");
@@ -94,7 +98,7 @@ function displayModels(data) {
 				<img src="../img/profile_imgs/cubeModel.jpg" class="card-img-top object-fit-cover" style="height: 70%;" alt="Card image">
 				<div class="d-flex flex-column justify-content-start text-start p-2" style="flex: 1;">
 					<p class="fw-semibold small mb-1 text-muted">${deliveryStatus(item.enddate)}</p>
-					<h6 class="card-title mb-1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
+					<h6 class="card-title mb-1 text-black" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h6>
 					<p class="card-text text-muted small mt-2">Click to show more info about model</p>
 				</div>
 			</div>`;

@@ -60,7 +60,7 @@
 								style="cursor: pointer"
 							>
 								<div>
-									<p class="mb-3 text-dark">Select a 3D model file (.stl)</p>
+									<p class="mb-3 text-dark">Click here to select your 3D model files (STL)</p>
 								</div>
 								<!-- Hidden file input -->
 								<input type="file" class="form-control d-none" id="stlFileInput" name="File Selector" accept=".stl" />
@@ -78,7 +78,7 @@
 						<div class="d-flex mb-2">
 							<button type="button" class="btn btn-danger me-3" id="remove3dfile">Remove 3d Model</button>
 							<button type="button" class="btn btn-success" id="replace3dfile">Replace 3d Model</button>
-							<input type="hidden" id="hiddenFileName" name="hiddenFileName" />
+							<input type="hidden" id="hiddenFileName" name="File Selector" />
 						</div>
 
 						Print's name
@@ -92,18 +92,29 @@
 							<option value="pla" selected>PLA</option>
 							<option value="abs">ABS</option>
 							<option value="petg">PETG</option>
+							<option value="tpu">TPU</option>
 						</select>
 						Color
 						<div class="d-flex">
 							<select class="form-select w-25 p2g-select" id="color" name="Color">
-								<option value="red" selected>Red</option>
+								<option value="red">Red</option>
 								<option value="green">Green</option>
 								<option value="blue">Blue</option>
+								<option value="yellow">Yellow</option>
+								<option value="black">Black</option>
+								<option value="white" selected>White</option>
+								<option value="orange">Orange</option>
+								<option value="purple">Purple</option>
+								<option value="gray">Gray</option>
+								<option value="pink">Pink</option>
 							</select>
 
 							<div class="form-check mt-2 ms-3">
 								<input type="checkbox" class="form-check-input p2g-checkbox" id="multicolor" name="Multicolor" />
 								<label class="form-check-label" for="multicolor"> Multicolor </label>
+								<span title="Write on the 'Adicional Information' box about which colors you want and where those colors should be." style="cursor: pointer; font-size: small"
+									><i class="bi bi-question-circle"></i
+								></span>
 							</div>
 						</div>
 					</div>
@@ -162,16 +173,16 @@
 							Durability
 							<select class="form-select w-50 p2g-select" id="durabilityPreset" name="Durability Preset" onchange="durabilityPreset()">
 								<option value="" selected hidden>Select an option</option>
-								<option value="w">Weak</option>
-								<option value="a" selected>Average</option>
-								<option value="s">Strong</option>
+								<option value="w">Weak – for quick prints and prototypes</option>
+								<option value="a" selected>Average – balanced strength for everyday use</option>
+								<option value="s">Strong – durable for functional or mechanical parts</option>
 								<option value="custom" hidden>Custom</option>
 							</select>
 
 							<div class="ms-4 mt-2">
 								Infill
-								<span title="% of the print's inside that has plastic, high infill results in a much stronger print" style="cursor: pointer; font-size: small"
-									><i class="bi bi-info-circle"></i
+								<span title="% of the print's inside that has plastic, high infill results in a much stronger print." style="cursor: pointer; font-size: small"
+									><i class="bi bi-question-circle"></i
 								></span>
 								<div class="input-group w-25">
 									<input
@@ -187,9 +198,9 @@
 
 								Type of infill
 								<span
-									title="Format of the print's infill, diferent types have diferent advantages, such as strength, elasticity and resistance"
+									title="Format of the print's infill, diferent types have diferent advantages, such as strength, elasticity and resistance."
 									style="cursor: pointer; font-size: small"
-									><i class="bi bi-info-circle"></i
+									><i class="bi bi-question-circle"></i
 								></span>
 								<select class="form-select w-25 p2g-select" id="infillType" name="Infill Type" onchange="durabilityPresetSetCustom()">
 									<option value="lines">Lines</option>
@@ -248,8 +259,8 @@
 							<div class="form-check mt-2 ms-1">
 								<input class="form-check-input p2g-checkbox" type="checkbox" id="smoothPrint" name="Smooth Print" value="" />
 								<label class="form-check-label" for="smoothPrint"> Smooth print </label>
-								<span title="Make the outside of the print smoother after it finishes" style="cursor: pointer; font-size: small"
-									><i class="bi bi-info-circle"></i
+								<span title="Make the outside of the print smoother after it finishes." style="cursor: pointer; font-size: small"
+									><i class="bi bi-question-circle"></i
 								></span>
 							</div>
 						</div>
@@ -310,7 +321,8 @@
 						</div>
 
 						<div class="mt-4">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam unde quas optio explicabo saepe fugit placeat obcaecati odio inventore atque.
+							<i class="bi bi-exclamation-circle"></i> Please note, after reviewing your 3D model for printability and materials, we may adjust the price or
+							turnaround time. If any changes are made, we will notify you before proceeding.
 						</div>
 					</div>
 
@@ -319,8 +331,8 @@
 
 					<div class="mt-2">
 						<div class="small">
-							By uploading a 3D model, you confirm that you own the rights to use and print the file or have permission from the rights holder. Our service does
-							not assume responsibility for copyrighted or restricted designs. All prints are made under the assumption of legal and authorized use.
+							By uploading a 3D model, you confirm you have the rights or permission to print it. We are not responsible for copyrighted or restricted designs.
+							All prints assume legal, authorized use.
 						</div>
 					</div>
 				</div>

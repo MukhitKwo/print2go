@@ -2,9 +2,16 @@ async function updatePassword() {
 	try {
 		const emailToChange = document.getElementById("emailReset").value;
 		const newPassword = document.getElementById("passReset1").value;
+		const rewritePassword = document.getElementById("passReset2").value;
 
-		if (!emailToChange || !newPassword) {
-			alert("Please enter both email and new password.");
+		if (!emailToChange) {
+			alert("Please enter an email");
+			return;
+		} else if (!newPassword) {
+			alert("Please enter the new password.");
+			return;
+		} else if (!rewritePassword) {
+			alert("Please rewrite the new password.");
 			return;
 		}
 
@@ -24,20 +31,18 @@ async function updatePassword() {
 				table: "profiles",
 				column: "email",
 				value: emailToChange,
-				new_value: { password: newPassword }
+				new_value: { password: newPassword },
 			}),
 		});
 
 		if (!res.ok) throw new Error("Failed to update password");
-
+		window.location.href = "/pages/login_page.html";
 		alert("Password updated successfully.");
 	} catch (err) {
 		console.error("Update failed:", err);
 		alert("Failed to update password.");
 	}
 }
-
-
 
 function findEmail(table, field, value) {
 	// Changed: Modified the URL to pass 'table', 'column', and 'value' as query parameters

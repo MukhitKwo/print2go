@@ -50,8 +50,8 @@ function getModelData() {
 		addTolerance: document.getElementById("addTolerance").checked,
 		urgent: document.getElementById("urgent").checked,
 		fileNames: allFiles,
-		price: 99.99,
-		enddate: getDeliveryDate(9),
+		price: 5.0,
+		enddate: getDeliveryDate(5),
 	};
 }
 

@@ -46,6 +46,27 @@
 						<li class="nav-item">
 							<a class="nav-link active" href="/pages/profile_page.html">Account</a>
 						</li>
+						<!-- Additional menu for small screens -->
+						<div class="d-block d-md-none mt-2 ms-3" id="section-buttons">
+							<li class="nav-item">
+								<a class="nav-link" href="#" data-section="profile">My Profile</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#" data-section="adress">Delivery Address</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#" data-section="printed">Printed Models</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#" data-section="modeled">Modeled Models</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#" data-section="settings">Settings</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-danger" href="#" id="logOut-sm">Log Out</a>
+							</li>
+						</div>
 					</ul>
 				</div>
 			</div>
@@ -54,7 +75,7 @@
 		<div class="container mt-5">
 			<div class="row">
 				<div class="col-md-3 mb-3 mb-md-0">
-					<div class="p2g-panel rounded-bottom-0 d-flex flex-column justify-content-center align-items-center p-3">
+					<div class="p2g-panel rounded-bottom-0 d-flex flex-column justify-content-center align-items-center p-3 mb-1">
 						<div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
 							<div class="text-center mt-3">
 								<img class="img-fluid object-fit-cover rounded-circle w-50 h-50" src="../img/profile_imgs/profile.jpg" alt="Profile Image" />
@@ -67,14 +88,16 @@
 						</div>
 					</div>
 
-					<div class="list-group rounded-top-0" id="section-buttons">
-						<div></div>
-						<button type="button" class="list-group-item list-group-item-action p2g-panel-button active" data-section="profile">My Profile</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="adress">Delivery Adress</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="printed">Printed models</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="modeled">Modeled models</button>
-						<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="settings">Settings</button>
-						<button type="button" id="logOut" class="list-group-item list-group-item-action p2g-panel-button">Log Out</button>
+					<!-- Sidebar (visible only md and up) -->
+					<div class="d-none d-md-block">
+						<div class="list-group p2g-panel rounded-top-0" id="section-buttons">
+							<button type="button" class="list-group-item list-group-item-action p2g-panel-button active" data-section="profile">My Profile</button>
+							<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="adress">Delivery Address</button>
+							<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="printed">Printed Models</button>
+							<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="modeled">Modeled Models</button>
+							<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="settings">Settings</button>
+							<button type="button" id="logOut" class="list-group-item list-group-item-action p2g-panel-button">Log Out</button>
+						</div>
 					</div>
 				</div>
 
@@ -136,8 +159,11 @@
 							<label class="form-check-label" for="switchCheckChecked">Dark Mode</label>
 						</div>
 						Language
-						<select class="form-select w-50 p2g-select ">
-							<option value="1">Portuguese</option>
+						<span title="Theres currently no other languages except english." style="cursor: pointer; font-size: small"
+							><i class="bi bi-exclamation-circle"></i
+						></span>
+						<select class="form-select w-50 p2g-select">
+							<option value="1" disabled>Portuguese</option>
 							<option value="2" selected>English</option>
 						</select>
 					</div>

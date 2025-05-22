@@ -34,6 +34,7 @@ async function loadPrintData() {
 		document.getElementById("quantity").value = print.quantity || "";
 		document.getElementById("material").value = print.material || "";
 		document.getElementById("color").value = print.color || "";
+		document.getElementById("color").dispatchEvent(new Event('change'));
 		document.getElementById("multicolor").checked = print.multicolor || false;
 		document.getElementById("nozzleDiameter").value = print.nozzlediameter || "";
 		document.getElementById("layerHeight").value = print.layerheight || "";

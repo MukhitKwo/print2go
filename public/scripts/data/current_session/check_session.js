@@ -19,8 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		const accountBtn = document.getElementById("accountBtn");
-		if (accountBtn) {
+		const accountBtn_sm = document.getElementById("accountBtn-sm");
+		
+		if (accountBtn || accountBtn_sm) {
 			accountBtn.setAttribute("href", "/pages/print_page.html");
+			accountBtn_sm.setAttribute("href", "/pages/print_page.html");
 		}
 		// Hide the Sign Up button
 		document.getElementById("signUpBtn")?.classList.add("d-none");

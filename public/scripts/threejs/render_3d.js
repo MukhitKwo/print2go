@@ -32,10 +32,11 @@ const directionalLightBottom = new THREE.DirectionalLight(0xffffff, 1);
 directionalLightBottom.position.set(-5, -10, -7.5);
 scene.add(directionalLightBottom);
 
-let defaultCube = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), new THREE.MeshStandardMaterial({ color: 0x8e1616 }));
+let defaultCube = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.7, 0.7), new THREE.MeshStandardMaterial({ color: 0xffffff }));
 scene.add(defaultCube);
 
 let currentMesh = defaultCube;
+let meshColor = 0xffffff;
 
 fileInput.addEventListener("change", (event) => {
 	const file = event.target.files[0];
@@ -53,7 +54,7 @@ fileInput.addEventListener("change", (event) => {
 		const geometry = loader.parse(contents);
 
 		const material = new THREE.MeshStandardMaterial({
-			color: 0xffffff,
+			color: meshColor,
 			metalness: 0.5,
 			roughness: 0.7,
 		});
@@ -107,6 +108,25 @@ function animate() {
 animate();
 
 //===========================================================================
+// Change model color
+
+// Your function that applies the selected color to the mesh
+export function applySelectedColor(color) {
+	meshColor = color;
+
+	if (currentMesh && currentMesh.material) {
+		currentMesh.material.color.set(color);
+		currentMesh.material.needsUpdate = true; // Tell Three.js to update the material
+	}
+}
+
+// Existing event listener now just calls the function
+const colorSelect = document.getElementById("color");
+colorSelect.addEventListener("change", (event) => {
+	applySelectedColor(event.target.value);
+});
+
+//===================================================================
 
 // Delete and replace buttons
 document.getElementById("remove3dfile").addEventListener("click", () => {

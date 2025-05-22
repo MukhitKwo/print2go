@@ -3,7 +3,7 @@
 	--color-2: #171717;
 	--color-3: #434343;
 	--color-4: #eaeaea;
-	--color-5: #6e1212;
+	--color-5: #adabab;
 }
 
 .p2g-navbar {
@@ -16,12 +16,12 @@
 
 .p2g-panel {
 	background-color: var(--color-3);
-	border-radius: 10px;
+	border-radius: 3px;
 }
 
 .p2g-file-selector{
 	background-color: var(--color-4);
-	border-radius: 10px;
+	border-radius: 3px;
 }
 
 .p2g-separator {

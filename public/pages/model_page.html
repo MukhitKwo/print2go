@@ -59,7 +59,9 @@
 			<input type="file" id="fileInput" multiple hidden />
 
 			<div class="" style="height: 222px; cursor: pointer" id="uploadArea">
-				<div class="p2g-file-selector w-100 h-100 d-flex justify-content-center align-items-center text-dark">Insert files here</div>
+				<div class="p2g-file-selector w-100 h-100 d-flex justify-content-center align-items-center text-dark">
+					Click here to upload your reference files (images, sketches, or existing 3D files)
+				</div>
 			</div>
 
 			<div class="bg-success">
@@ -78,7 +80,7 @@
 							<input type="text" class="form-control w-75 p2g-input" id="name" name="Model Name" />
 
 							File Type
-							<select class="form-select w-25 p2g-select " id="fileType">
+							<select class="form-select w-25 p2g-select" id="fileType">
 								<option value="stl" selected>STL</option>
 								<option value="step">STEP</option>
 								<option value="stp">STP</option>
@@ -97,9 +99,13 @@
 							</div>
 
 							Level of Detail
-							<span title="Controls the number of faces the model has, the higher the number, the heavier the model is" style="cursor: pointer; font-size: small"><i class="bi bi-info-circle"></i></span>
-							<div class=" d-flex">
-								<select class="form-select w-25 p2g-select " id="levelDetail">
+							<span
+								title="Controls the number of faces the model has, the higher the number, the heavier the model is"
+								style="cursor: pointer; font-size: small"
+								><i class="bi bi-question-circle"></i
+							></span>
+							<div class="d-flex">
+								<select class="form-select w-25 p2g-select" id="levelDetail">
 									<option value="low">Low</option>
 									<option value="normal" selected>Normal</option>
 									<option value="high">High</option>
@@ -108,12 +114,14 @@
 								<div class="form-check ms-3 mt-2">
 									<input class="form-check-input p2g-checkbox" type="checkbox" id="addTolerance" />
 									<label class="form-check-label" for="addTolerance"> Add tolerance </label>
-									<span title="Adds a small tolerance do the model in order to stay the correct size after a 3d print" style="cursor: pointer; font-size: small"><i class="bi bi-info-circle"></i></span>
+									<span title="Adds a small tolerance do the model in order to stay the correct size after a 3d print." style="cursor: pointer; font-size: small"
+										><i class="bi bi-question-circle"></i
+									></span>
 								</div>
 							</div>
 							Description
-							<span title="Add any information that you might consider usefull" style="cursor: pointer; font-size: small"
-								><i class="bi bi-info-circle"></i
+							<span title="Add all information that you might consider usefull for the creation of your model." style="cursor: pointer; font-size: small"
+								><i class="bi bi-question-circle"></i
 							></span>
 							<textarea class="form-control w-75 p2g-input" id="description" rows="6"></textarea>
 						</div>
@@ -136,12 +144,19 @@
 							<label class="form-check-label" for="urgent"> Urgent (+ 20%)</label>
 						</div>
 
-						<div class="mt-4">The cost and time for model creation will be estimated after a Print2Go team member reviews the submission.</div>
+						<div class="mt-4">
+							<i class="bi bi-exclamation-circle"></i> The cost and turnaround time for model creation will be provided after a thorough review of your submission by a Print2Go team member.
+						</div>
 					</div>
 
 					<button type="button" id="submitModel" class="btn btn-success w-100 mt-3" onclick="storeModelData()">Send 3D Model</button>
 					<button type="button" id="updateModel" class="btn btn-primary w-100 mt-3 d-none" onclick="updateData()">Save 3D Model</button>
-					<div class="mt-2">License</div>
+					<div class="mt-2">
+						<div class="small">
+							By uploading a 3D model, you confirm you have the rights or permission to print it. We are not responsible for copyrighted or restricted designs.
+							All prints assume legal, authorized use.
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -158,7 +173,7 @@
 					</div>
 
 					<!-- Quick Links -->
-					<div class="col-md-4 ">
+					<div class="col-md-4">
 						<h5>Quick Links</h5>
 						<ul class="list-unstyled">
 							<li><a href="/about" class="text-white">About Us</a></li>

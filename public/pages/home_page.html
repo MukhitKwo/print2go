@@ -50,34 +50,42 @@
 			</div>
 		</nav>
 
-
 		<div class="container-fluid position-relative">
+			<!-- Image -->
 			<div>
-				<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/homepage.jpg" style="opacity: 80%;" />
+				<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/homepage1.jpg" style="opacity: 80%; max-height: 90vh" />
 			</div>
 
-			<!-- Overlay content -->
-			<div class="position-absolute top-0 start-0 h-100 d-flex align-items-center w-100">
-				<div class="text-white p-4" style="margin-left: 10%; max-width: 35%;">
-					<h2 class="mb-3">Welcome to Print2Go!</h2>
-					<p class="mb-4">Your one-stop solution for custom 3D prints and 3d models all around Portugal and Spain.</p>
+			<div class="position-absolute top-0 start-0 h-100 d-flex align-items-center w-100 d-none d-md-flex">
+				<div class="text-white p-4" style="margin-left: 5%; max-width: 30%">
+					<h2 class="mb-3">Welcome to Print2Go – Your All-in-One 3D Printing & Modeling Hub</h2>
+					<p class="mb-4">
+						Need a prototype, a custom part, or a 3D model from scratch? Print2Go brings your ideas to life with precision, speed, and creativity. Upload,
+						customize, print – we’ll handle the rest.
+					</p>
 					<a id="accountBtn" href="/pages/login_page.html" class="btn p2g-button rounded-0 w-50">Get Started</a>
 				</div>
 			</div>
+
+			<div class="text-white p-4 d-block d-md-none p2g-panel rounded-0">
+				<h2 class="mb-3">Welcome to Print2Go!</h2>
+				<p class="mb-4">Your one-stop solution for custom 3D prints and 3d models all around Portugal and Spain.</p>
+				<a id="accountBtn-sm" href="/pages/login_page.html" class="btn p2g-button rounded-0 w-100">Get Started</a>
+			</div>
 		</div>
-		
 
 		<div class="container mt-5">
 			<h2 class="text-center mb-4">About Us</h2>
 			<div class="row row-gap-3">
 				<!-- 3D Printing Section -->
-				<div class="col-lg-6 d-flex align-items-center p2g-panel rounded-0">
+				<div class="col-lg-6 d-flex align-items-center p2g-panel">
 					<div class="p-4">
 						<h3 class="mb-3">Our 3D Printing Service</h3>
 						<p>
-							At Print2Go, we specialize in bringing your ideas to life through high-quality 3D printing. Whether you're a designer, engineer, or hobbyist, we
-							provide rapid prototyping, product development, and custom 3D printing solutions to meet your needs. Our state-of-the-art printers and materials
-							ensure precision and durability for every project.
+							At Print2Go, we specialize in professional-grade 3D printing for hobbyists, engineers, designers, and businesses. Whether you need a single
+							prototype or a small production run, we offer a variety of materials (PLA, ABS, PETG, resin, and more) and finishes to suit your project. <br />
+							Upload your STL or OBJ files, choose your print settings, and we’ll take care of the rest – from slicing to shipping. Not sure how to prepare your
+							file? We’ve got easy guides and expert support available.
 						</p>
 					</div>
 				</div>
@@ -110,13 +118,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 d-flex align-items-center text-end p2g-panel rounded-0">
+				<div class="col-lg-6 d-flex align-items-center text-end p2g-panel">
 					<div class="p-4">
-						<h3 class="mb-3">Expert 3D Modeling Services</h3>
+						<h3 class="mb-3">Custom 3D Design – Built From Your Vision</h3>
 						<p>
-							In addition to our 3D printing services, we offer professional 3D modeling services. Our team of skilled designers works closely with you to turn
-							your concepts into detailed, high-quality 3D models. Whether you need a product prototype, architectural visualization, or anything in between, we
-							are here to make your vision a reality.
+							If you don’t have a 3D model yet, we can create one for you. Whether you have a sketch, an idea in your head, or just a rough reference, our team
+							will transform it into a detailed, print-ready 3D design.
+							<br />
+							We can also replicate existing parts, help bring product concepts to life, or modify and repair broken models. <br />
+							You'll be able to review and approve the model before it's printed, ensuring it fits your expectations and project goals.
 						</p>
 					</div>
 				</div>
@@ -126,49 +136,49 @@
 		<div class="container mt-5">
 			<h2 class="text-center mb-4">Frequently Asked Questions (FAQ)</h2>
 
-			<!-- FAQ Item 1 -->
-
 			<div class="mb-3 p2g-panel p-3">
-				<h5 class="fw-bold">What is 3D Printing?</h5>
+				<h5 class="fw-bold">What file types do you accept for 3D printing?</h5>
 				<p class="mb-1">
-					3D printing, also known as additive manufacturing, is a process where material is deposited layer by layer to build a 3D object based on a digital
-					model.
+					We accept STL, OBJ, and 3MF files. If you’re not sure about your file format, just send us what you have—we’ll help convert or fix it.
 				</p>
 			</div>
 
-			<!-- FAQ Item 2 -->
 			<div class="mb-3 p2g-panel p-3">
-				<h5 class="fw-bold">How long does it take to print an object?</h5>
+				<h5 class="fw-bold">What materials can I choose from?</h5>
 				<p class="mb-1">
-					The time required to 3D print an object depends on several factors including the size, complexity, and resolution of the object. Smaller objects can
-					be printed in a few hours, while larger and more detailed ones may take several days.
+					We offer PLA, ABS, PETG, TPU (flexible), and resin. Each has different properties like strength, flexibility, or surface finish. Contact us if you’re
+					not sure what to choose.
 				</p>
 			</div>
 
-			<!-- FAQ Item 3 -->
 			<div class="mb-3 p2g-panel p-3">
-				<h5 class="fw-bold">What file formats are accepted for 3D printing?</h5>
+				<h5 class="fw-bold">Can you help me create a 3D model from an idea or sketch?</h5>
 				<p class="mb-1">
-					We accept commonly used 3D model file formats such as STL, OBJ, and 3MF. Please make sure your file is properly formatted to avoid any printing
-					issues.
+					Yes! Our modeling team can design a 3D file from scratch based on your input. Send us a drawing, photo, or even a description, and we’ll get started.
 				</p>
 			</div>
 
-			<!-- FAQ Item 4 -->
 			<div class="mb-3 p2g-panel p-3">
-				<h5 class="fw-bold">Do you offer custom 3D modeling services?</h5>
+				<h5 class="fw-bold">Can I make changes to my model after submitting it?</h5>
 				<p class="mb-1">
-					Yes! We offer custom 3D modeling services to help bring your ideas to life. Our team of experienced designers can create 3D models based on your
-					specifications.
+					Yes, you can request changes after submission—just contact us as soon as possible. If we haven’t started printing yet, we can adjust the file or
+					settings. For custom modeling projects, we include revision rounds so you can review and fine-tune your design before it's finalized.
 				</p>
 			</div>
 
-			<!-- FAQ Item 5 -->
 			<div class="mb-3 p2g-panel p-3">
-				<h5 class="fw-bold">What materials can be used for 3D printing?</h5>
+				<h5 class="fw-bold">How long does it take to complete an order?</h5>
 				<p class="mb-1">
-					We offer a variety of materials for 3D printing including PLA, ABS, PETG, and more. Each material has its own properties such as strength,
-					flexibility, and appearance, so we can help choose the best material for your project.
+					Most orders are completed within 2–5 business days, depending on the complexity, material, and size. Custom 3D modeling projects may take additional
+					time based on the level of detail and revisions required. Rush options are available—just let us know your deadline when placing the order.
+				</p>
+			</div>
+
+			<div class="mb-3 p2g-panel p-3">
+				<h5 class="fw-bold">Where is this service available?</h5>
+				<p class="mb-1">
+					Print2Go currently operates in Portugal and Spain. We offer reliable local shipping with tracking and delivery estimates. More regions may be added
+					soon as we grow!
 				</p>
 			</div>
 		</div>
@@ -180,18 +190,18 @@
 					<!-- Contact Information -->
 					<div class="col-md-4">
 						<h5>Contact Us</h5>
-						<p>Email: <a href="mailto:info@yourwebsite.com" class="text-white">info@yourwebsite.com</a></p>
-						<p>Phone: <a href="tel:+1234567890" class="text-white">+1 (234) 567-890</a></p>
-						<p>Address: 1234 Your Street, Your City, Your Country</p>
+						<p>Email: <a href="mailto:info@yourwebsite.com" class="text-white">info@print2go.com</a></p>
+						<p>Phone: <a href="tel:+123456789" class="text-white">(+365) 913 624 433</a></p>
+						<p>Address: R. Cmte. Pinho e Freitas 28, 3750-127 Águeda</p>
 					</div>
 
 					<!-- Quick Links -->
 					<div class="col-md-4">
 						<h5>Quick Links</h5>
 						<ul class="list-unstyled">
-							<li><a href="/about" class="text-white">About Us</a></li>
+							<li><a href="/about" class="text-white">Our Story</a></li>
 							<li><a href="/services" class="text-white">Services</a></li>
-							<li><a href="/faq" class="text-white">FAQ</a></li>
+							<li><a href="/faq" class="text-white">Help & Support</a></li>
 							<li><a href="/contact" class="text-white">Contact</a></li>
 							<li><a href="/terms" class="text-white">Terms of Service</a></li>
 							<li><a href="/privacy" class="text-white">Privacy Policy</a></li>

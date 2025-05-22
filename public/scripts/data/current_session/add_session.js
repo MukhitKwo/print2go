@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						}
 					});
 			} else {
-				alert("Agree with the licence.");
+				alert("You must agree with the Terms of Service and Privacy Policy.");
 			}
 		} else {
 			alert("Please fill all inputs.");
