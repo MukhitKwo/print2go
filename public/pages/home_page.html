@@ -50,17 +50,18 @@
 			</div>
 		</nav>
 
-		<div class="container-fluid mt-3 position-relative">
-			<div class="ratio ratio-21x9">
-				<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/homepage.jpg" />
+
+		<div class="container-fluid position-relative">
+			<div>
+				<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/homepage.jpg" style="opacity: 80%;" />
 			</div>
-		
+
 			<!-- Overlay content -->
-			<div class="position-absolute top-0 end-0 h-100 d-flex align-items-center" style="width: 40%; background: rgba(0, 0, 0, 0.5);">
-				<div class="text-white p-4">
+			<div class="position-absolute top-0 start-0 h-100 d-flex align-items-center w-100">
+				<div class="text-white p-4" style="margin-left: 10%; max-width: 35%;">
 					<h2 class="mb-3">Welcome to Print2Go!</h2>
-					<p class="mb-4">Your one-stop solution for custom 3D prints.</p>
-					<a id="accountBtn" href="/pages/login_page.html" class="btn p2g-button">Get Started</a>
+					<p class="mb-4">Your one-stop solution for custom 3D prints and 3d models all around Portugal and Spain.</p>
+					<a id="accountBtn" href="/pages/login_page.html" class="btn p2g-button rounded-0 w-50">Get Started</a>
 				</div>
 			</div>
 		</div>
@@ -70,8 +71,8 @@
 			<h2 class="text-center mb-4">About Us</h2>
 			<div class="row row-gap-3">
 				<!-- 3D Printing Section -->
-				<div class="col-md-6 d-flex align-items-center p2g-panel rounded-0">
-					<div class="px-4">
+				<div class="col-lg-6 d-flex align-items-center p2g-panel rounded-0">
+					<div class="p-4">
 						<h3 class="mb-3">Our 3D Printing Service</h3>
 						<p>
 							At Print2Go, we specialize in bringing your ideas to life through high-quality 3D printing. Whether you're a designer, engineer, or hobbyist, we
@@ -80,14 +81,14 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="row row-cols-2">
-						<div class="col">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
 							<div class="ratio ratio-1x1">
 								<img class="img-fluid w-100 h-100 object-fit-cover p2g-color-coal" src="../img/home_imgs/printing1.jpg" />
 							</div>
 						</div>
-						<div class="col">
+						<div class="col-6">
 							<div class="ratio ratio-1x1">
 								<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/printing2.png" />
 							</div>
@@ -95,22 +96,22 @@
 					</div>
 				</div>
 
-				<div class="col-md-6">
-					<div class="row row-cols-2">
-						<div class="col">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-6">
 							<div class="ratio ratio-1x1">
 								<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/modeling1.jpg" />
 							</div>
 						</div>
-						<div class="col">
+						<div class="col-6">
 							<div class="ratio ratio-1x1">
 								<img class="img-fluid w-100 h-100 object-fit-cover" src="../img/home_imgs/modeling2.jpg" />
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 d-flex align-items-center text-end p2g-panel rounded-0">
-					<div class="px-4">
+				<div class="col-lg-6 d-flex align-items-center text-end p2g-panel rounded-0">
+					<div class="p-4">
 						<h3 class="mb-3">Expert 3D Modeling Services</h3>
 						<p>
 							In addition to our 3D printing services, we offer professional 3D modeling services. Our team of skilled designers works closely with you to turn
@@ -185,7 +186,7 @@
 					</div>
 
 					<!-- Quick Links -->
-					<div class="col-md-4 ">
+					<div class="col-md-4">
 						<h5>Quick Links</h5>
 						<ul class="list-unstyled">
 							<li><a href="/about" class="text-white">About Us</a></li>
@@ -217,7 +218,7 @@
 				</div>
 			</div>
 		</footer>
-		
+
 		<script src="../scripts/data/current_session/check_session.js"></script>
 
 		<script
@@ -225,6 +226,5 @@
 			integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
 			crossorigin="anonymous"
 		></script>
-
 	</body>
 </html>

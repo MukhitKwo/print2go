@@ -1,8 +1,8 @@
 :root {
 	--color-1: #000000;
-	--color-2: #1d1616;
-	--color-3: #8e1616;
-	--color-4: #d84040;
+	--color-2: #171717;
+	--color-3: #434343;
+	--color-4: #eaeaea;
 	--color-5: #6e1212;
 }
 
@@ -19,9 +19,18 @@
 	border-radius: 10px;
 }
 
+.p2g-file-selector{
+	background-color: var(--color-4);
+	border-radius: 10px;
+}
+
 .p2g-separator {
 	border-bottom: var(--color-2) 2px solid;
 	border-top: var(--color-2) 2px solid;
+}
+
+.p2g-link{
+	color: #eaeaea;
 }
 
 .p2g-input,

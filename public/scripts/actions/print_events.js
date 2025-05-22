@@ -1,3 +1,8 @@
+document.getElementById("fileTrigger").addEventListener("click", function () {
+    document.getElementById("stlFileInput").click();
+  });
+
+
 function qualityPreset() {
 	const preset = document.getElementById("qualityPreset").value;
 

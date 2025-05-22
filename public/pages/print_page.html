@@ -50,21 +50,20 @@
 
 		<div class="container pt-5">
 			<div class="row px-5">
-				<div class="col-4">
-					<div class="h-100">
+				<div class="col-lg-4">
+					<div class="h-100 mb-3 mb-lg-0">
 						<div class="ratio ratio-1x1">
 							<div
 								id="fileTrigger"
-								class="d-flex justify-content-center align-items-center bg-success bg-opacity-75 text-center rounded visible"
+								class="d-flex justify-content-center align-items-center p2g-file-selector text-center visible"
 								name="File Input Trigger"
+								style="cursor: pointer"
 							>
 								<div>
-									<p class="mb-3">Select a 3D model file (.stl)</p>
-									<label class="btn btn-light text-dark">
-										Choose File
-										<input type="file" class="form-control" id="stlFileInput" name="Select 3D file" accept=".stl" hidden value="ola" />
-									</label>
+									<p class="mb-3 text-dark">Select a 3D model file (.stl)</p>
 								</div>
+								<!-- Hidden file input -->
+								<input type="file" class="form-control d-none" id="stlFileInput" name="File Selector" accept=".stl" />
 							</div>
 
 							<div id="viewer-container" class="w-100 h-100 hidden" name="Viewer Container">
@@ -74,7 +73,7 @@
 					</div>
 				</div>
 
-				<div class="col">
+				<div class="col-lg">
 					<div class="p2g-panel p-3">
 						<div class="d-flex mb-2">
 							<button type="button" class="btn btn-danger me-3" id="remove3dfile">Remove 3d Model</button>
@@ -89,14 +88,14 @@
 						<input type="number" class="form-control w-25 p2g-input" id="quantity" name="Quantity" value="1" min="1" />
 
 						Material
-						<select class="form-select w-25 p2g-select p2g-select-arrow" id="material" name="Material">
+						<select class="form-select w-25 p2g-select" id="material" name="Material">
 							<option value="pla" selected>PLA</option>
 							<option value="abs">ABS</option>
 							<option value="petg">PETG</option>
 						</select>
 						Color
 						<div class="d-flex">
-							<select class="form-select w-25 p2g-input" id="color" name="Color">
+							<select class="form-select w-25 p2g-select" id="color" name="Color">
 								<option value="red" selected>Red</option>
 								<option value="green">Green</option>
 								<option value="blue">Blue</option>
@@ -114,12 +113,12 @@
 
 		<div class="container mt-4">
 			<div class="row">
-				<div class="col-8">
+				<div class="col-lg-8">
 					<div class="p2g-panel">
 						<!-- ?QUALITY -->
 						<div class="p-3 p2g-separator">
 							Nozzle diameter | Layer height
-							<select class="form-select w-50 p2g-select p2g-select-arrow" id="qualityPreset" name="Quality Preset" onchange="qualityPreset()">
+							<select class="form-select w-50 p2g-select" id="qualityPreset" name="Quality Preset" onchange="qualityPreset()">
 								<option value="" selected hidden>Chose a preset</option>
 								<option value="0.2">0.2 mm | 0.1 mm</option>
 								<option value="0.3">0.3 mm | 0.2 mm</option>
@@ -132,7 +131,7 @@
 
 							<div class="ms-4 mt-2">
 								Nozzle Diameter
-								<select class="form-select w-25 p2g-select p2g-select-arrow" id="nozzleDiameter" name="Nozzle Diameter" onchange="qualityPresetSetCustom()">
+								<select class="form-select w-25 p2g-select" id="nozzleDiameter" name="Nozzle Diameter" onchange="qualityPresetSetCustom()">
 									<option value="" selected hidden>Select a nozzle size</option>
 									<option value="0.20">0.2 mm</option>
 									<option value="0.30">0.3 mm</option>
@@ -161,7 +160,7 @@
 						<!-- ?DURABILITY -->
 						<div class="p-3 p2g-separator">
 							Durability
-							<select class="form-select w-50 p2g-select p2g-select-arrow" id="durabilityPreset" name="Durability Preset" onchange="durabilityPreset()">
+							<select class="form-select w-50 p2g-select" id="durabilityPreset" name="Durability Preset" onchange="durabilityPreset()">
 								<option value="" selected hidden>Select an option</option>
 								<option value="w">Weak</option>
 								<option value="a" selected>Average</option>
@@ -174,7 +173,7 @@
 								<span title="% of the print's inside that has plastic, high infill results in a much stronger print" style="cursor: pointer; font-size: small"
 									><i class="bi bi-info-circle"></i
 								></span>
-								<div class="input-group w-25 mt-2">
+								<div class="input-group w-25">
 									<input
 										type="number"
 										class="form-control w-25 p2g-input"
@@ -192,7 +191,7 @@
 									style="cursor: pointer; font-size: small"
 									><i class="bi bi-info-circle"></i
 								></span>
-								<select class="form-select w-25 p2g-select p2g-select-arrow" id="infillType" name="Infill Type" onchange="durabilityPresetSetCustom()">
+								<select class="form-select w-25 p2g-select" id="infillType" name="Infill Type" onchange="durabilityPresetSetCustom()">
 									<option value="lines">Lines</option>
 									<option value="triangular">Triangular</option>
 									<option value="grid">Grid</option>
@@ -234,7 +233,7 @@
 							</div>
 
 							Type of support
-							<select class="form-select w-25 p2g-select p2g-select-arrow" id="supportType" name="Support Type">
+							<select class="form-select w-25 p2g-select" id="supportType" name="Support Type">
 								<option value="normal" selected>Normal</option>
 								<option value="tree">Tree</option>
 								<option value="minimal">Minimal</option>
@@ -287,14 +286,14 @@
 						</div>
 
 						<!-- ?ADDITIONAL INFORMATION -->
-						<div class="p-3">
+						<div class="p-3 mb-3 mb-lg-0">
 							Additional information
 							<textarea class="form-control w-100 p2g-input" id="adicionalInfo" name="Additional Information" rows="4"></textarea>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-4">
+				<div class="col-lg-4">
 					<div class="p2g-panel p-3">
 						<div class="d-flex justify-content-between fs-4">
 							<div>Cost of print</div>
@@ -340,7 +339,7 @@
 					</div>
 
 					<!-- Quick Links -->
-					<div class="col-md-4 ">
+					<div class="col-md-4">
 						<h5>Quick Links</h5>
 						<ul class="list-unstyled">
 							<li><a href="/about" class="text-white">About Us</a></li>

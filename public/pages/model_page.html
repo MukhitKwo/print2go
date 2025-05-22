@@ -59,7 +59,7 @@
 			<input type="file" id="fileInput" multiple hidden />
 
 			<div class="" style="height: 222px; cursor: pointer" id="uploadArea">
-				<div class="bg-success bg-opacity-75 w-100 h-100 d-flex justify-content-center align-items-center text-white">Insert files here</div>
+				<div class="p2g-file-selector w-100 h-100 d-flex justify-content-center align-items-center text-dark">Insert files here</div>
 			</div>
 
 			<div class="bg-success">
@@ -71,14 +71,14 @@
 		<div class="container">
 			<div class="row my-3">
 				<!-- Form -->
-				<div class="col-8">
+				<div class="col-lg-8">
 					<div class="p2g-panel">
-						<div class="p-3">
+						<div class="p-3 mb-3 mb-lg-0">
 							Model Name
 							<input type="text" class="form-control w-75 p2g-input" id="name" name="Model Name" />
 
 							File Type
-							<select class="form-select w-25 p2g-select p2g-select-arrow" id="fileType">
+							<select class="form-select w-25 p2g-select " id="fileType">
 								<option value="stl" selected>STL</option>
 								<option value="step">STEP</option>
 								<option value="stp">STP</option>
@@ -99,7 +99,7 @@
 							Level of Detail
 							<span title="Controls the number of faces the model has, the higher the number, the heavier the model is" style="cursor: pointer; font-size: small"><i class="bi bi-info-circle"></i></span>
 							<div class=" d-flex">
-								<select class="form-select w-25 p2g-select p2g-select-arrow" id="levelDetail">
+								<select class="form-select w-25 p2g-select " id="levelDetail">
 									<option value="low">Low</option>
 									<option value="normal" selected>Normal</option>
 									<option value="high">High</option>
@@ -121,7 +121,7 @@
 				</div>
 
 				<!-- Sidebar -->
-				<div class="col-4">
+				<div class="col-lg-4">
 					<div class="p2g-panel p-3">
 						<div class="d-flex justify-content-between fs-4">
 							<div>Cost</div>

@@ -72,10 +72,16 @@
 
 						<div class="d-flex justify-content-between mt-3">
 							<a class="btn btn-secondary" onclick="window.history.back();">Go Back</a>
-							<button class="btn btn-success" onclick="if(validatePaymentForm('payment-section')) { goToTab('address'); insert_update_payment(); }">
+							<button class="btn btn-success" onclick="if(validatePaymentForm('payment-section')) { goToAdress(); insert_update_payment(); }">
 								Go to Delivery
 							</button>
 						</div>
+					</div>
+				</div>
+
+				<div class="col-5" id="tabImg1" style="height: 80vh">
+					<div class="h-100">
+						<img class="img-fluid w-100 h-100 object-fit-cover rounded-0" src="../img/purple_back.jpg" />
 					</div>
 				</div>
 
@@ -105,8 +111,8 @@
 						</div>
 
 						<div class="d-flex justify-content-between mt-3">
-							<button class="btn btn-secondary" onclick="goToTab('payment') ">Back to Payment</button>
-							<button class="btn btn-success" onclick="if(validatePaymentForm('address-section')) { insertData(); goToTab('confirm'); updateProfileInfo(); }">
+							<button class="btn btn-secondary" onclick="goToPayment() ">Back to Payment</button>
+							<button class="btn btn-success" onclick="if(validatePaymentForm('address-section')) { insertData(); goToConfirm(); updateProfileInfo(); }">
 								Finish Order
 							</button>
 						</div>
@@ -120,6 +126,12 @@
 						<p>Should arrive in <span id="confirm-days">[x]</span> days</p>
 						<p>Thank you for your purchase!</p>
 						<a href="/pages/home_page.html" class="btn p2g-button mt-3">Return to Home Page</a>
+					</div>
+				</div>
+
+				<div class="col-12 d-none mt-3" id="tabImg2" style="height: 30vh">
+					<div class="h-100">
+						<img class="img-fluid w-100 h-100 object-fit-cover rounded-0" src="../img/purple_back.jpg" />
 					</div>
 				</div>
 			</div>

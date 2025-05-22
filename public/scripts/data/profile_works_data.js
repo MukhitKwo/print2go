@@ -34,7 +34,7 @@ function displayPrints(data) {
 
 	data.forEach((item) => {
 		const col = document.createElement("div");
-		col.classList.add("col-md-4", "d-flex", "justify-content-center");
+		col.classList.add("col-6", "col-lg-4", "d-flex", "justify-content-center");
 
 		const card = document.createElement("div");
 		card.classList.add("card", "border-0", "h-100", "ratio", "ratio-1x1", "overflow-hidden", "p-0");
@@ -78,7 +78,7 @@ function displayModels(data) {
 
 	data.forEach((item) => {
 		const col = document.createElement("div");
-		col.classList.add("col-md-4", "d-flex", "justify-content-center");
+		col.classList.add("col-6", "col-lg-4", "d-flex", "justify-content-center");
 
 		const card = document.createElement("div");
 		card.classList.add("card", "border-0", "h-100", "ratio", "ratio-1x1", "overflow-hidden", "p-0");

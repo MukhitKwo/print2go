@@ -1,13 +1,33 @@
-function goToTab(tab) {
-	const steps = {
-		payment: document.getElementById("payment-section"),
-		address: document.getElementById("address-section"),
-		confirm: document.getElementById("confirm-section"),
-	};
+function goToPayment() {
+	const payment = document.getElementById("payment-section");
+	const address = document.getElementById("address-section");
+	const confirm = document.getElementById("confirm-section");
 
-	// Hide all steps
-	Object.values(steps).forEach((section) => section.classList.add("d-none"));
+	payment.classList.remove("d-none");
+	address.classList.add("d-none");
+	confirm.classList.add("d-none");
+}
 
-	// Show the selected one
-	steps[tab].classList.remove("d-none");
+function goToAdress() {
+	const payment = document.getElementById("payment-section");
+	const address = document.getElementById("address-section");
+	const confirm = document.getElementById("confirm-section");
+
+	payment.classList.add("d-none");
+	address.classList.remove("d-none");
+	confirm.classList.add("d-none");
+}
+
+function goToConfirm() {
+	const payment = document.getElementById("payment-section");
+	const address = document.getElementById("address-section");
+	const confirm = document.getElementById("confirm-section");
+	const tabImg1 = document.getElementById("tabImg1");
+	const tabImg2 = document.getElementById("tabImg2");
+
+	payment.classList.add("d-none");
+	address.classList.add("d-none");
+	confirm.classList.remove("d-none");
+	tabImg1.classList.add("d-none");
+	tabImg2.classList.remove("d-none");
 }
