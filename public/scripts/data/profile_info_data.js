@@ -1,5 +1,4 @@
 async function findByField(table, field, value) {
-	// 🔄 Changed 'page' to 'table'
 	const url = `/findOne?table=${table}&column=${field}&value=${encodeURIComponent(value)}`;
 
 	const res = await fetch(url);
@@ -29,6 +28,8 @@ async function loadProfileInfo() {
 		document.getElementById("adress").value = data.adress || "";
 		document.getElementById("postal_code").value = data.postalcode || "";
 		document.getElementById("receptor_name").value = data.receptorname || "";
+		
+		document.getElementById("darkMode").checked = data.darkmode;
 
 		// Hide save/cancel buttons
 		document.getElementById("save-cancel-profile").classList.add("d-none");
@@ -42,9 +43,11 @@ async function loadProfileInfo() {
 window.addEventListener("DOMContentLoaded", loadProfileInfo);
 document.getElementById("cancel-profile").addEventListener("click", loadProfileInfo);
 document.getElementById("cancel-adress").addEventListener("click", loadProfileInfo);
+document.getElementById("cancel-settings").addEventListener("click", loadProfileInfo);
 
 document.getElementById("save-profile").addEventListener("click", updateProfileData);
 document.getElementById("save-adress").addEventListener("click", updateProfileData);
+document.getElementById("save-settings").addEventListener("click", updateProfileData);
 
 async function updateProfileData() {
 	try {
@@ -57,9 +60,12 @@ async function updateProfileData() {
 			adress: document.getElementById("adress").value,
 			postalCode: document.getElementById("postal_code").value,
 			receptorName: document.getElementById("receptor_name").value,
+			darkmode: document.getElementById("darkMode").checked,
 		};
 		//todo maybe only update when user updates username
 		document.getElementById("profile-username").textContent = document.getElementById("username").value;
+
+		localStorage.setItem("darkMode", updatedData.darkmode);
 
 		const value = document.getElementById("email").value;
 
@@ -74,6 +80,7 @@ async function updateProfileData() {
 		// Hide the entire div containing the buttons after the update
 		document.getElementById("save-cancel-profile").classList.add("d-none");
 		document.getElementById("save-cancel-adress").classList.add("d-none");
+		document.getElementById("save-cancel-settings").classList.add("d-none");
 	} catch (err) {
 		console.error("Update failed:", err);
 		alert("Failed to update profile.");

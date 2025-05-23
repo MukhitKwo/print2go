@@ -92,7 +92,7 @@
 }
 
 .p2g-button {
-	background-color: var(--color-4);
+	background-color: var(--color-5);
 	color: var(--color-6);
 	border: none;
 	outline: none;
@@ -100,7 +100,7 @@
 }
 
 .p2g-button:hover {
-	background-color: var(--color-5) !important;
+	background-color: var(--color-4) !important;
 	color: white !important;
 	border: none;
 }

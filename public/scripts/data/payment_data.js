@@ -70,11 +70,14 @@ function insertPaymentInfo(session) {
 		rememberPayment: document.getElementById("rememberPayment").checked,
 	};
 
+	table = info.table;
+	delete info.table;
+
 	fetch("/insert", {
 		method: "POST",
-		body: JSON.stringify(info),
+		body: JSON.stringify({ table: table, data: info }),
 		headers: {
-			"Content-Type": "application/json", // Set content type as JSON
+			"Content-Type": "application/json",
 		},
 	})
 		.then((response) => {

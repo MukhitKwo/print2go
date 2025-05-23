@@ -6,7 +6,7 @@ function showWorks(session) {
 	pages.forEach((page) => {
 		fetch(`/findAll?table=${page}&column=session&value=${encodeURIComponent(session)}`)
 			.then((res) => {
-				if (!res.ok) throw new Error(`Error fetching data from ${page}`);
+				// if (!res.ok) throw new Error(`Error fetching data from ${page}`);
 				return res.json();
 			})
 			.then((data) => {

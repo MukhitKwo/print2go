@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				.then((user) => {
 					if (user && user.password === passwordLogin) {
 						localStorage.setItem("session", emailLogin); // Set session in localStorage
+						localStorage.setItem("darkMode", user.darkmode);
 						window.location.href = "/pages/home_page.html"; // Redirect to home page
 					} else {
 						alert("Incorrect password.");
@@ -54,7 +55,13 @@ document.addEventListener("DOMContentLoaded", function () {
 								password: passwordRegist,
 								username: usernameRegist,
 								cellphone: cellphoneRegist,
+								country: null,
+								city: null,
+								adress: null,
+								postalcode: null,
+								receptorname: null,
 								userid: codeStr.slice(0, 8),
+								darkmode: true,
 							});
 						} else {
 							console.error("Error:", err);
@@ -72,11 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Function to insert a new user into the database (PostgreSQL)
 function insertNewUser(userInfo) {
+	table = userInfo.table;
+	delete userInfo.table;
+
 	fetch("/insert", {
 		method: "POST",
-		body: JSON.stringify(userInfo),
+		body: JSON.stringify({ table: table, data: userInfo }),
 		headers: {
-			"Content-Type": "application/json", // Set content type as JSON
+			"Content-Type": "application/json",
 		},
 	})
 		.then((response) => {
@@ -86,6 +96,7 @@ function insertNewUser(userInfo) {
 		.then((json) => {
 			console.log("User inserted:", json);
 			localStorage.setItem("session", userInfo.email); // Set session on successful registration
+			// localStorage.setItem("darkMode", true);
 			window.location.href = "/pages/home_page.html"; // Redirect to home page
 		})
 		.catch((error) => {

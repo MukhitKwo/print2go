@@ -153,10 +153,10 @@
 
 					<!-- Preferences Section -->
 					<div class="p2g-panel p-3 section d-none" id="settings-section">
-						<h5>Preferences</h5>
+						<h5>Settings</h5>
 						<div class="form-check form-switch">
-							<input class="form-check-input p2g-switch" type="checkbox" role="switch" id="switchCheckChecked" checked />
-							<label class="form-check-label" for="switchCheckChecked">Dark Mode</label>
+							<input class="form-check-input p2g-switch" type="checkbox" role="switch" id="darkMode" checked />
+							<label class="form-check-label" for="darkMode">Dark Mode</label>
 						</div>
 						Language
 						<span title="Theres currently no other languages except english." style="cursor: pointer; font-size: small"
@@ -166,6 +166,10 @@
 							<option value="1" disabled>Portuguese</option>
 							<option value="2" selected>English</option>
 						</select>
+						<div id="save-cancel-settings" class="d-none">
+							<button id="save-settings" class="btn btn-primary mt-3">Save</button>
+							<button id="cancel-settings" class="btn btn-secondary mt-3 ms-2">Cancel</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -173,6 +177,7 @@
 
 		<script src="../scripts/actions/tabs/profile_tabs.js"></script>
 		<script src="../scripts/actions/profile_events.js"></script>
+		<!-- <script src="../scripts/actions/darkMode.js"></script> -->
 
 		<script src="../scripts/data/current_session/remove_session.js"></script>
 

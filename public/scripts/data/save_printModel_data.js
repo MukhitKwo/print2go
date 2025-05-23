@@ -73,9 +73,12 @@ function insertData() {
 		return;
 	}
 
+	table = data.table;
+	delete data.table;
+
 	fetch("/insert", {
 		method: "POST",
-		body: JSON.stringify(data),
+		body: JSON.stringify({ table: table, data: data }),
 		headers: {
 			"Content-Type": "application/json",
 		},

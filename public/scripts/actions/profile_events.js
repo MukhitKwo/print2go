@@ -1,5 +1,6 @@
 const profileFields = ["username", "password", "cellphone"];
 const addressFields = ["country", "district", "adress", "postal_code", "receptor_name"];
+const settingsFeild = ["darkMode"];
 
 profileFields.forEach((id) => {
 	const input = document.getElementById(id);
@@ -19,8 +20,17 @@ addressFields.forEach((id) => {
 	}
 });
 
+settingsFeild.forEach((id) => {
+	const input = document.getElementById(id);
+	if (input) {
+		input.addEventListener("input", () => {
+			document.getElementById("save-cancel-settings").classList.remove("d-none");
+		});
+	}
+});
+
 document.addEventListener("DOMContentLoaded", () => {
-	const switchToggle = document.getElementById("switchCheckChecked");
+	const switchToggle = document.getElementById("darkMode");
 
 	switchToggle.addEventListener("change", () => {
 		if (switchToggle.checked) {

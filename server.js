@@ -15,7 +15,7 @@ const client = new Client({
 	port: 5432,
 	user: "postgres",
 	password: "admin",
-	database: "print2goDB",
+	database: "print2go",
 });
 
 client
@@ -26,98 +26,27 @@ client
 //! INSERT
 app.post("/insert", async (req, res) => {
 	try {
-		let query, values;
+		const { table, data } = req.body;
 
-		if (req.body.table === "prints") {
-			query = `
-				INSERT INTO prints (
-				session, model, name, quantity, material, color, multicolor,
-				nozzleDiameter, layerHeight, infillPercent, infillType,
-				wallLayers, topBottomLayers, useSupport, supportType,
-				supportDensity, smoothPrint, scaleX, scaleY, scaleZ,
-				adicionalInfo, urgent, price, enddate
-				) VALUES (
-				$1, $2, $3, $4, $5, $6,
-				$7, $8, $9, $10,
-				$11, $12, $13, $14,
-				$15, $16, $17, $18, $19,
-				$20, $21, $22, $23, $24
-				)`;
-			values = [
-				req.body.session,
-				req.body.model,
-				req.body.name,
-				req.body.quantity,
-				req.body.material,
-				req.body.color,
-				req.body.multicolor,
-				req.body.nozzleDiameter,
-				req.body.layerHeight,
-				req.body.infillPercent,
-				req.body.infillType,
-				req.body.wallLayers,
-				req.body.topBottomLayers,
-				req.body.useSupport,
-				req.body.supportType,
-				req.body.supportDensity,
-				req.body.smoothPrint,
-				req.body.scaleX,
-				req.body.scaleY,
-				req.body.scaleZ,
-				req.body.adicionalInfo,
-				req.body.urgent,
-				req.body.price,
-				req.body.enddate,
-			];
-		} else if (req.body.table === "models") {
-			query = `
-                INSERT INTO models (
-                session, name, fileType, unit, description,
-                levelDetail, addTolerance, urgent, fileNames
-				, price, enddate
-                ) VALUES (
-                $1, $2, $3, $4, $5,
-                $6, $7, $8, $9, $10, $11
-                );`;
-			values = [
-				req.body.session,
-				req.body.name,
-				req.body.fileType,
-				req.body.unit,
-				req.body.description,
-				req.body.levelDetail,
-				req.body.addTolerance,
-				req.body.urgent,
-				req.body.fileNames,
-				req.body.price,
-				req.body.enddate,
-			];
-		} else if (req.body.table === "profiles") {
-			query = `
-				INSERT INTO profiles (
-				email, username, password, cellphone,
-				country, city, adress, postalCode, receptorName, userid
-				) VALUES (
-				$1, $2, $3, $4,
-				NULL, NULL, NULL, NULL, NULL, $5
-				);`;
-
-			values = [req.body.email, req.body.username, req.body.password, req.body.cellphone, req.body.userid];
-		} else if (req.body.table === "payments") {
-			query = `
-				INSERT INTO payments (
-				session, cardName, cardNumber, expirationDate, cvv, rememberPayment) 
-				VALUES ($1, $2, $3, $4, $5, $6);`;
-
-			values = [req.body.session, req.body.cardName, req.body.cardNumber, req.body.expirationDate, req.body.cvv, req.body.rememberPayment];
-		} else {
-			return res.status(400).json({ error: "Unknown table" });
+		if (!table || !data || typeof data !== "object") {
+			return res.status(400).json({ error: "Missing or invalid fields" });
 		}
 
+		const fields = Object.keys(data);
+		const placeholders = fields.map((_, i) => `$${i + 1}`);
+		const values = Object.values(data);
+
+		const query = `
+			INSERT INTO ${table} (${fields.join(", ")})
+			VALUES (${placeholders.join(", ")})
+			RETURNING *;
+		`;
+
 		const result = await client.query(query, values);
-		res.json({ message: "Inserted!", rowCount: result.rowCount });
+
+		res.json({ message: "Inserted!", rowCount: result.rowCount, inserted: result.rows[0] });
 	} catch (err) {
-		console.error(err);
+		console.error("Insert error:", err);
 		res.status(500).json({ error: err.message });
 	}
 });
@@ -202,5 +131,5 @@ app.get("/findAll", async (req, res) => {
 //! START THE SERVER
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-	console.log(`Server running: http://localhost:${PORT}`);
+	console.log(`> Server running: http://localhost:${PORT}`);
 });
