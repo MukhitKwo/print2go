@@ -161,7 +161,7 @@ async function updateData() {
 		const res = await fetch(`/update`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ table, column: "id", value: id, new_value: data }),
+			body: JSON.stringify({ table, column: "id", on_value: id, new_value: data }),
 		});
 
 		if (!res.ok) throw new Error("Failed to update data");

@@ -20,6 +20,7 @@
 	"homepage": "https://github.com/MukhitKwo/print2go#readme",
 	"description": "",
 	"dependencies": {
+		"bcryptjs": "^3.0.2",
 		"body-parser": "^2.2.0",
 		"bootstrap": "^5.3.6",
 		"express": "^5.1.0",

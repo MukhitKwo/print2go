@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (emailLogin && passwordLogin) {
 			findByField("profiles", "email", emailLogin)
 				.then((user) => {
-					if (user && user.password === passwordLogin) {
+					if (user && bcrypt.compareSync(passwordLogin, user.password)) {
 						localStorage.setItem("session", emailLogin); // Set session in localStorage
 						localStorage.setItem("darkMode", user.darkmode);
 						window.location.href = "/pages/home_page.html"; // Redirect to home page
@@ -110,9 +110,14 @@ function findByField(table, field, value) {
 	// Changed: Modified the URL to pass 'table', 'column', and 'value' as query parameters
 	const url = `/findOne?table=${table}&column=${field}&value=${encodeURIComponent(value)}`;
 
+	console.log(url);
+	
+
 	return fetch(url).then((res) => {
 		if (res.status === 404) {
 			// Specific handling for "not found"
+			console.log("sex");
+			
 			throw new Error("User not found");
 		}
 		if (!res.ok) {

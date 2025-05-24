@@ -12,7 +12,7 @@ const width = canvas.clientWidth;
 const height = canvas.clientHeight;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000000);
+scene.background = new THREE.Color(0x434343);
 
 const camera = new THREE.PerspectiveCamera(70, width / height, 0.1, 1000);
 camera.position.set(1, 1, 1);

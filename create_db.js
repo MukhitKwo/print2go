@@ -116,7 +116,7 @@ async function createTableIfNotExists(config) {
         CREATE TABLE IF NOT EXISTS profiles (
             email VARCHAR(100) PRIMARY KEY,
             username VARCHAR(50),
-            password VARCHAR(50),
+            password VARCHAR(60),
             cellphone VARCHAR(20),
             country VARCHAR(30),
             city VARCHAR(40),

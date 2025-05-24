@@ -28,7 +28,7 @@ async function loadProfileInfo() {
 		document.getElementById("adress").value = data.adress || "";
 		document.getElementById("postal_code").value = data.postalcode || "";
 		document.getElementById("receptor_name").value = data.receptorname || "";
-		
+
 		document.getElementById("darkMode").checked = data.darkmode;
 
 		// Hide save/cancel buttons
@@ -72,7 +72,7 @@ async function updateProfileData() {
 		const res = await fetch(`/update`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ table: "profiles", column: "email", value, new_value: updatedData }),
+			body: JSON.stringify({ table: "profiles", column: "email", on_value: value, new_value: updatedData }),
 		});
 
 		if (!res.ok) throw new Error("Failed to update profile");

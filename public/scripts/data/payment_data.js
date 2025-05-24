@@ -42,7 +42,7 @@ function updatePaymentInfo(session) {
 		body: JSON.stringify({
 			table: "payments",
 			column: "session",
-			value: session,
+			on_value: session,
 			new_value: info,
 		}),
 	})

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const bcrypt = require("bcryptjs");
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,6 +33,10 @@ app.post("/insert", async (req, res) => {
 			return res.status(400).json({ error: "Missing or invalid fields" });
 		}
 
+		if (data.password) {
+			data.password = encrypt(data.password);
+		}
+
 		const fields = Object.keys(data);
 		const placeholders = fields.map((_, i) => `$${i + 1}`);
 		const values = Object.values(data);
@@ -54,10 +59,14 @@ app.post("/insert", async (req, res) => {
 //! UPDATE
 app.put("/update", async (req, res) => {
 	try {
-		const { table, column, value, new_value } = req.body;
+		const { table, column, on_value, new_value } = req.body;
 
-		if (!table || !column || !value || !new_value || typeof new_value !== "object") {
+		if (!table || !column || !on_value || !new_value || typeof new_value !== "object") {
 			return res.status(400).json({ error: "Missing or invalid fields" });
+		}
+
+		if (new_value.password) {
+			new_value.password = encrypt(new_value.password);
 		}
 
 		// Build SET clause and values array
@@ -73,7 +82,7 @@ app.put("/update", async (req, res) => {
 				WHERE ${column} = ${filterPlaceholder};
 			`;
 
-		const values = [...setValues, value];
+		const values = [...setValues, on_value];
 
 		const result = await client.query(query, values);
 
@@ -133,3 +142,9 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
 	console.log(`> Server running: http://localhost:${PORT}`);
 });
+
+function encrypt(rawPass) {
+	const salt = bcrypt.genSaltSync(10);
+	const hash = bcrypt.hashSync(rawPass, salt);
+	return hash;
+}
