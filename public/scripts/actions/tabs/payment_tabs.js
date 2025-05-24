@@ -23,11 +23,11 @@ function goToConfirm() {
 	const address = document.getElementById("address-section");
 	const confirm = document.getElementById("confirm-section");
 	const tabImg1 = document.getElementById("tabImg1");
-	const tabImg2 = document.getElementById("tabImg2");
+	// const tabImg2 = document.getElementById("tabImg2");
 
 	payment.classList.add("d-none");
 	address.classList.add("d-none");
 	confirm.classList.remove("d-none");
-	tabImg1.classList.add("d-none");
-	tabImg2.classList.remove("d-none");
+	tabImg1.classList.remove("d-md-block");
+	// tabImg2.classList.remove("d-none");
 }

@@ -29,8 +29,10 @@ function displayPrints(data) {
 	const row = document.createElement("div");
 	row.classList.add("row", "g-3");
 
-	document.getElementById("n_prints").textContent = data.length;
-	document.getElementById("n_prints_title").textContent = data.length;
+	if (data.length != null) {
+		document.getElementById("n_prints").textContent = data.length;
+		document.getElementById("n_prints_title").textContent = data.length;
+	}
 
 	data.sort((a, b) => b.id - a.id);
 
@@ -75,8 +77,10 @@ function displayModels(data) {
 	const row = document.createElement("div");
 	row.classList.add("row", "g-3");
 
-	document.getElementById("n_models").textContent = data.length;
-	document.getElementById("n_models_title").textContent = data.length;
+	if (data.length != null) {
+		document.getElementById("n_models").textContent = data.length;
+		document.getElementById("n_models_title").textContent = data.length;
+	}
 
 	data.sort((a, b) => b.id - a.id);
 

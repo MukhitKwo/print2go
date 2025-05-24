@@ -119,7 +119,7 @@ function updateProfileInfo() {
 		body: JSON.stringify({
 			table: "profiles",
 			column: "email",
-			value: session,
+			on_value: session,
 			new_value: newProfileInfo,
 		}),
 	})
@@ -128,7 +128,7 @@ function updateProfileInfo() {
 			return res.json(); // Handle response if needed
 		})
 		.then((json) => {
-			alert("Profile information updated successfully.");
+			// alert("Profile information updated successfully.");
 		})
 		.catch((error) => {
 			console.error("Update error:", error);

@@ -19,7 +19,7 @@ async function loadProfileInfo() {
 		// Refill profile fields
 		document.getElementById("username").value = data.username || "";
 		document.getElementById("email").value = data.email || "";
-		document.getElementById("password").value = data.password || "";
+		// document.getElementById("password").value = data.password || "";
 		document.getElementById("cellphone").value = data.cellphone || "";
 
 		// Refill adress fields
@@ -31,9 +31,13 @@ async function loadProfileInfo() {
 
 		document.getElementById("darkMode").checked = data.darkmode;
 
+		document.getElementById("changePassBtn").classList.remove("d-none");
+		document.getElementById("changePass").classList.add("d-none");
+
 		// Hide save/cancel buttons
 		document.getElementById("save-cancel-profile").classList.add("d-none");
 		document.getElementById("save-cancel-adress").classList.add("d-none");
+		document.getElementById("save-cancel-settings").classList.add("d-none");
 	} catch (err) {
 		console.error("Error reloading form values:", err);
 		// alert("Failed to reload form values.");
@@ -53,7 +57,7 @@ async function updateProfileData() {
 	try {
 		const updatedData = {
 			username: document.getElementById("username").value,
-			password: document.getElementById("password").value,
+
 			cellphone: document.getElementById("cellphone").value,
 			country: document.getElementById("country").value,
 			city: document.getElementById("city").value,
@@ -65,7 +69,25 @@ async function updateProfileData() {
 		//todo maybe only update when user updates username
 		document.getElementById("profile-username").textContent = document.getElementById("username").value;
 
-		localStorage.setItem("darkMode", updatedData.darkmode);
+		// localStorage.setItem("darkMode", updatedData.darkmode);
+
+		const newPasswordInput = document.getElementById("newPassword");
+		const confirmPasswordInput = document.getElementById("confirmPassword");
+
+		if (newPasswordInput && confirmPasswordInput) {
+			const newPassword = newPasswordInput.value;
+			const confirmPassword = confirmPasswordInput.value;
+
+			if (newPassword && confirmPassword && newPassword === confirmPassword) {
+				updatedData.password = newPassword;
+				changePassBtn.classList.remove("d-none");
+				changePass.classList.add("d-none");
+				newPasswordInput.value = null;
+				confirmPasswordInput.value = null;
+			} else if (newPassword || confirmPassword) {
+				alert("Passwords do not match or are incomplete.");
+			}
+		}
 
 		const value = document.getElementById("email").value;
 

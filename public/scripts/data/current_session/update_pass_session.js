@@ -30,7 +30,7 @@ async function updatePassword() {
 			body: JSON.stringify({
 				table: "profiles",
 				column: "email",
-				value: emailToChange,
+				on_value: emailToChange,
 				new_value: { password: newPassword },
 			}),
 		});

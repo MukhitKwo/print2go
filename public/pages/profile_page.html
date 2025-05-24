@@ -75,14 +75,23 @@
 		<div class="container mt-5">
 			<div class="row">
 				<div class="col-md-3 mb-3 mb-md-0">
-					<div class="p2g-panel rounded-bottom-0 d-flex flex-column justify-content-center align-items-center p-3 mb-1">
+					<div class="p2g-panel  d-flex flex-column justify-content-center align-items-center p-3 mb-1">
 						<div class="ratio ratio-1x1 d-flex justify-content-center align-items-center">
-							<div class="text-center mt-3">
+							<div class="text-center">
 								<img class="img-fluid object-fit-cover rounded-circle w-50 h-50" src="../img/profile_imgs/profile.jpg" alt="Profile Image" />
-								<div class="mt-3">
-									<h5 class="mb-0"><strong id="profile-username">?</strong></h5>
-									<p class="mb-0">#<span id="profile-id">?</span></p>
-									<div class="mt-4"><span id="n_prints">0</span> <i class="bi bi-printer me-4"></i> <span id="n_models">0</span> <i class="bi bi-box"></i></div>
+
+								<!-- Bordered box with fixed top/bottom content -->
+								<div class="position-relative  mt-1 pt-2" style="min-height: 100px">
+									<!-- Top content: username + ID -->
+									<div>
+										<h5 class="mb-0"><strong id="profile-username">?</strong></h5>
+										<p class="mb-0">#<span id="profile-id">?</span></p>
+									</div>
+
+									<!-- Bottom content: prints and models -->
+									<div class="position-absolute bottom-0 start-50 translate-middle-x pb-1">
+										<span id="n_prints">0</span> <i class="bi bi-printer me-4"></i> <span id="n_models">0</span> <i class="bi bi-box"></i>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -90,7 +99,7 @@
 
 					<!-- Sidebar (visible only md and up) -->
 					<div class="d-none d-md-block">
-						<div class="list-group p2g-panel rounded-top-0" id="section-buttons">
+						<div class="list-group p2g-panel " id="section-buttons">
 							<button type="button" class="list-group-item list-group-item-action p2g-panel-button active" data-section="profile">My Profile</button>
 							<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="adress">Delivery Address</button>
 							<button type="button" class="list-group-item list-group-item-action p2g-panel-button" data-section="printed">Printed Models</button>
@@ -108,12 +117,19 @@
 						<h5>Profile Info</h5>
 						Email
 						<input type="text" class="form-control w-75 p2g-input" disabled id="email" />
-						Password
-						<input type="password" class="form-control w-75 p2g-input" id="password" />
 						username
 						<input type="text" class="form-control w-75 p2g-input" id="username" />
 						Cellphone
 						<input type="number" class="form-control w-75 p2g-input" id="cellphone" />
+
+						<button class="btn p2g-button mt-2" id="changePassBtn">Change Password</button>
+
+						<div class="d-none" id="changePass">
+							Change password
+							<input type="password" class="form-control w-75 p2g-input" id="newPassword" />
+							Rewrite password
+							<input type="password" class="form-control w-75 p2g-input" id="confirmPassword" />
+						</div>
 
 						<div id="save-cancel-profile" class="d-none">
 							<button id="save-profile" class="btn btn-primary mt-3">Save</button>

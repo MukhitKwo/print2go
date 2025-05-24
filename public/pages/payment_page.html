@@ -52,7 +52,7 @@
 
 		<div class="container mt-5">
 			<div class="row g-0">
-				<div class="col-7 step-section" id="payment-section">
+				<div class="col-md-7 step-section" id="payment-section">
 					<div class="p2g-panel rounded-0 p-3">
 						<h5>Informações de Pagamento</h5>
 
@@ -79,14 +79,14 @@
 					</div>
 				</div>
 
-				<div class="col-5" id="tabImg1" style="height: 80vh">
+				<div class="col-5 d-none d-md-block" id="tabImg1" style="height: 80vh">
 					<div class="h-100">
 						<img class="img-fluid w-100 h-100 object-fit-cover rounded-0" src="../img/purple_back.jpg" />
 					</div>
 				</div>
 
 				<!-- Address Info Section (Initially hidden) -->
-				<div class="col-7 step-section d-none" id="address-section">
+				<div class="col-md-7 step-section d-none" id="address-section">
 					<div class="p2g-panel rounded-0 p-3">
 						<h5>Informações de Entrega</h5>
 
@@ -120,18 +120,17 @@
 				</div>
 				<div class="col-12 step-section d-none" id="confirm-section">
 					<div class="p2g-panel rounded-0 p-3 text-center">
-						<h5>Payment Confirmed</h5>
-						<p>Sent to <span id="confirm-address">[address]</span></p>
-						<p>To <span id="confirm-name">[name]</span></p>
-						<p>Should arrive in <span id="confirm-days">[x]</span> days</p>
-						<p>Thank you for your purchase!</p>
+						<h4 class="mb-3">✅ Payment Confirmed</h4>
+						<p class="mb-1">Sent to: <strong id="confirm-address">[address]</strong></p>
+						<p class="mb-1">To: <strong id="confirm-name">[name]</strong></p>
+						<p class="mb-3">Should arrive in <strong id="confirm-days">[x]</strong> days</p>
+						<h5 class="mb-2">Thank you for your purchase!</h5>
 						<a href="/pages/home_page.html" class="btn p2g-button mt-3">Return to Home Page</a>
 					</div>
-				</div>
-
-				<div class="col-12 d-none" id="tabImg2" style="height: 40vh">
-					<div class="h-100">
-						<img class="img-fluid w-100 h-100 object-fit-cover rounded-0" src="../img/purple_back.jpg" />
+					<div class="col-12" id="tabImg2" style="height: 40vh">
+						<div class="h-100">
+							<img class="img-fluid w-100 h-100 object-fit-cover rounded-0" src="../img/purple_back.jpg" />
+						</div>
 					</div>
 				</div>
 			</div>

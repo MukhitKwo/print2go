@@ -1,3 +1,5 @@
+// const bcrypt = require("bcryptjs");
+
 //* LOGIN
 document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("logIn").addEventListener("click", function () {
@@ -7,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (emailLogin && passwordLogin) {
 			findByField("profiles", "email", emailLogin)
 				.then((user) => {
-					if (user && bcrypt.compareSync(passwordLogin, user.password)) {
+					if (user && user.password == passwordLogin) {
 						localStorage.setItem("session", emailLogin); // Set session in localStorage
-						localStorage.setItem("darkMode", user.darkmode);
+						// localStorage.setItem("darkMode", user.darkmode);
 						window.location.href = "/pages/home_page.html"; // Redirect to home page
 					} else {
 						alert("Incorrect password.");
@@ -111,13 +113,12 @@ function findByField(table, field, value) {
 	const url = `/findOne?table=${table}&column=${field}&value=${encodeURIComponent(value)}`;
 
 	console.log(url);
-	
 
 	return fetch(url).then((res) => {
 		if (res.status === 404) {
 			// Specific handling for "not found"
 			console.log("sex");
-			
+
 			throw new Error("User not found");
 		}
 		if (!res.ok) {

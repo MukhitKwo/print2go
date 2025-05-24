@@ -25,3 +25,11 @@
 	pointer-events: auto;
 	/* position: static; */
 }
+
+.p2g-home-img {
+  transition: transform 0.3s ease;
+}
+
+.p2g-home-img:hover {
+  transform: scale(1.03);
+}

@@ -1,4 +1,4 @@
-const profileFields = ["username", "password", "cellphone"];
+const profileFields = ["username", "password", "cellphone", "newPassword", "confirmPassword"];
 const addressFields = ["country", "district", "adress", "postal_code", "receptor_name"];
 const settingsFeild = ["darkMode"];
 
@@ -27,6 +27,16 @@ settingsFeild.forEach((id) => {
 			document.getElementById("save-cancel-settings").classList.remove("d-none");
 		});
 	}
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	const changePassBtn = document.getElementById("changePassBtn");
+	const changePass = document.getElementById("changePass");
+
+	changePassBtn.addEventListener("click", () => {
+		changePassBtn.classList.add("d-none"); // Hide the button
+		changePass.classList.remove("d-none"); // Show the inputs
+	});
 });
 
 document.addEventListener("DOMContentLoaded", () => {
