@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-// const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -33,9 +33,9 @@ app.post("/insert", async (req, res) => {
 			return res.status(400).json({ error: "Missing or invalid fields" });
 		}
 
-		// if (data.password) {
-		// 	data.password = encrypt(data.password);
-		// }
+		if (data.password) {
+			data.password = encrypt(data.password);
+		}
 
 		const fields = Object.keys(data);
 		const placeholders = fields.map((_, i) => `$${i + 1}`);
@@ -65,9 +65,9 @@ app.put("/update", async (req, res) => {
 			return res.status(400).json({ error: "Missing or invalid fields" });
 		}
 
-		// if (new_value.password) {
-		// 	new_value.password = encrypt(new_value.password);
-		// }
+		if (new_value.password) {
+			new_value.password = encrypt(new_value.password);
+		}
 
 		// Build SET clause and values array
 		const setFields = Object.keys(new_value);
@@ -143,8 +143,17 @@ app.listen(PORT, () => {
 	console.log(`> Server running: http://localhost:${PORT}`);
 });
 
-// function encrypt(rawPass) {
-// 	const salt = bcrypt.genSaltSync(10);
-// 	const hash = bcrypt.hashSync(rawPass, salt);
-// 	return hash;
-// }
+function encrypt(rawPass) {
+	const salt = bcrypt.genSaltSync(10);
+	const hash = bcrypt.hashSync(rawPass, salt);
+	return hash;
+}
+
+app.post("/loginCheck", async (req, res) => {
+	const { passwordLogin, passwordHash } = req.body;
+	if (bcrypt.compareSync(passwordLogin, passwordHash)) {
+		res.json({ success: true });
+	} else {
+		res.json({ success: false });
+	}
+});

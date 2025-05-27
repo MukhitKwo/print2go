@@ -87,7 +87,7 @@
 
 .p2g-panel-button.active {
 	background-color: var(--color-4) !important;
-	color: white !important;
+	color: var(--color-1) !important;
 	border: none;
 }
 
@@ -101,7 +101,7 @@
 
 .p2g-button:hover {
 	background-color: var(--color-4) !important;
-	color: white !important;
+	color: var(--color-1) !important;
 	border: none;
 }
 

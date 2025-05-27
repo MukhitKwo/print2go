@@ -9,12 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (emailLogin && passwordLogin) {
 			findByField("profiles", "email", emailLogin)
 				.then((user) => {
-					if (user && user.password == passwordLogin) {
-						localStorage.setItem("session", emailLogin); // Set session in localStorage
-						// localStorage.setItem("darkMode", user.darkmode);
-						window.location.href = "/pages/home_page.html"; // Redirect to home page
-					} else {
-						alert("Incorrect password.");
+					if (user) {
+						comparePassword(passwordLogin, user.password).then((isMatch) => {
+							if (isMatch) {
+								localStorage.setItem("session", emailLogin);
+								// localStorage.setItem("darkMode", user.darkmode);
+								window.location.href = "/pages/home_page.html";
+							} else {
+								alert("Incorrect password.");
+							}
+						});
 					}
 				})
 				.catch((err) => {
@@ -26,6 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 });
+
+async function comparePassword(passwordLogin, passwordHash) {
+	const res = await fetch("/loginCheck", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ passwordLogin, passwordHash }),
+	});
+	const data = await res.json();
+	return data.success;
+}
 
 //* REGIST
 document.addEventListener("DOMContentLoaded", function () {
@@ -116,9 +130,6 @@ function findByField(table, field, value) {
 
 	return fetch(url).then((res) => {
 		if (res.status === 404) {
-			// Specific handling for "not found"
-			console.log("sex");
-
 			throw new Error("User not found");
 		}
 		if (!res.ok) {
