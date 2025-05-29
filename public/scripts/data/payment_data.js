@@ -125,7 +125,7 @@ function updateProfileInfo() {
 	})
 		.then((res) => {
 			if (!res.ok) throw new Error("Failed to update adress info");
-			return res.json(); // Handle response if needed
+			return res.json();
 		})
 		.then((json) => {
 			// alert("Profile information updated successfully.");

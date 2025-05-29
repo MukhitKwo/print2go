@@ -41,12 +41,12 @@ function saveClientConfig(config) {
 	const filePath = path.join(__dirname, "client_config.js");
 
 	const fileContent = `
-module.exports = {
-host: "${config.host}",
-port: ${config.port},
-user: "${config.user}",
-password: "${config.password}",
-database: "${config.database}"
+    module.exports = {
+    host: "${config.host}",
+    port: ${config.port},
+    user: "${config.user}",
+    password: "${config.password}",
+    database: "${config.database}"
 };
     `.trim();
 

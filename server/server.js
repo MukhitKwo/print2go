@@ -16,8 +16,8 @@ const client = new Client(client_config);
 
 client
 	.connect()
-	.then(() => console.log(`Connected to PostgreSQL database '${client_config.database}'!`))
-	.catch((err) => console.error("Connection error", err.stack));
+	.then(() => console.log("\x1b[32m%s\x1b[0m", `Connected to PostgreSQL database '${client_config.database}'!`))
+	.catch((err) => console.error("\x1b[31m%s\x1b[0m", "Connection error", err.stack));
 
 //! INSERT
 app.post("/insert", async (req, res) => {
@@ -64,12 +64,10 @@ app.put("/update", async (req, res) => {
 			new_value.password = encrypt(new_value.password);
 		}
 
-		// Build SET clause and values array
 		const setFields = Object.keys(new_value);
 		const setPlaceholders = setFields.map((key, i) => `${key} = $${i + 1}`);
 		const setValues = Object.values(new_value);
 
-		// Add filter value as the final parameter
 		const filterPlaceholder = `$${setFields.length + 1}`;
 		const query = `
 				UPDATE ${table}
