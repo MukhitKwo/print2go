@@ -1,3 +1,5 @@
+const fs = require("fs");
+const path = require("path");
 const readline = require("readline");
 const { Client } = require("pg");
 
@@ -16,32 +18,53 @@ function askQuestion(query, defaultValue = "") {
 
 async function getConfigFromUser() {
 	console.log("Press Enter to skip");
+
 	const host = await askQuestion("< Host (default: localhost): ", "localhost");
-	const port = parseInt(await askQuestion("< Port (default: 5432): ", "5432"), 10);
+	const port = parseInt(await askQuestion("< Port (default: 5432): "), 10) || 5432;
 	const user = await askQuestion("< User (default: postgres): ", "postgres");
 	const password = await askQuestion("< Password (default: admin): ", "admin");
+	const database = await askQuestion("< Database name (default: print2go): ", "print2go");
 
-	return {
+	const config = {
 		host,
 		port,
 		user,
 		password,
-		database: "postgres",
+		database,
 	};
+
+	saveClientConfig(config);
+	return config;
 }
 
-const dbName = "print2go";
+function saveClientConfig(config) {
+	const filePath = path.join(__dirname, "client_config.js");
+
+	const fileContent = `
+module.exports = {
+host: "${config.host}",
+port: ${config.port},
+user: "${config.user}",
+password: "${config.password}",
+database: "${config.database}"
+};
+    `.trim();
+
+	fs.writeFileSync(filePath, fileContent);
+}
 
 async function createDatabaseIfNotExists(config) {
-	const client = new Client(config);
+	const adminConfig = { ...config, database: "postgres" };
+	const client = new Client(adminConfig);
+
 	await client.connect();
+	const dbName = config.database;
 
 	const res = await client.query("SELECT 1 FROM pg_database WHERE datname = $1", [dbName]);
 
 	if (res.rowCount === 0) {
 		await client.query(`CREATE DATABASE "${dbName}" WITH ENCODING 'UTF8' TEMPLATE template1`);
 		console.log(`Database '${dbName}' created.`);
-        // localStorage.removeItem("session");
 	} else {
 		console.log(`Database '${dbName}' already exists.`);
 	}
@@ -50,7 +73,7 @@ async function createDatabaseIfNotExists(config) {
 }
 
 async function createTableIfNotExists(config) {
-	const dbClient = new Client({ ...config, database: dbName });
+	const dbClient = new Client(config);
 	await dbClient.connect();
 
 	await dbClient.query(`
@@ -129,7 +152,7 @@ async function createTableIfNotExists(config) {
     `);
 
 	await dbClient.end();
-	console.log(`Tables created in database '${dbName}'.`);
+	console.log(`Tables created in database '${config.database}'.`);
 }
 
 async function main() {
@@ -138,7 +161,7 @@ async function main() {
 		await createDatabaseIfNotExists(config);
 		await createTableIfNotExists(config);
 	} catch (err) {
-		console.error("Error:", err);
+		console.error("Couldn't connect to database:", err);
 	}
 }
 

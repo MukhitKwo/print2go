@@ -4,8 +4,8 @@
 	"main": "create_db.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node server.js",
-		"setup": "node create_db.js && node server.js"
+		"start": "node server/server.js",
+		"setup": "node server/create_db.js && node server/server.js"
 	},
 	"repository": {
 		"type": "git",

@@ -44,8 +44,8 @@
 }
 
 .p2g-input:disabled {
-	background-color: var(--color-4);
-	color: rgb(135, 38, 38);
+	background-color: var(--color-5);
+	color: rgb(55, 55, 55);
 	border: none;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .p2g-switch:checked {
-	background-color: #b8001b; /* Red when checked */
+	background-color: var(--color-5); /* Red when checked */
 	/* border: 3px solid var(--color-4); */
 	border: none;
 }

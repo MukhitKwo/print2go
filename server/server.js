@@ -4,24 +4,19 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "..", "public")));
+
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, "public", "pages", "home_page.html"));
+	res.sendFile(path.join(__dirname, "..", "public", "pages", "home_page.html"));
 });
 
+const client_config = require("./client_config");
 const { Client } = require("pg");
-
-const client = new Client({
-	host: "localhost",
-	port: 5432,
-	user: "postgres",
-	password: "admin",
-	database: "print2go",
-});
+const client = new Client(client_config);
 
 client
 	.connect()
-	.then(() => console.log("Connected to PostgreSQL database!"))
+	.then(() => console.log(`Connected to PostgreSQL database '${client_config.database}'!`))
 	.catch((err) => console.error("Connection error", err.stack));
 
 //! INSERT
