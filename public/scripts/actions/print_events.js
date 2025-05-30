@@ -23,7 +23,9 @@ function qualityPreset() {
 	layer = presetMap[preset];
 
 	// Set values in the UI
-	document.getElementById("nozzleDiameter").value = nozzle.toFixed(1);
+	console.log(nozzle.toFixed(2));
+	
+	document.getElementById("nozzleDiameter").value = nozzle.toFixed(2);
 	document.getElementById("layerHeight").value = layer;
 }
 
